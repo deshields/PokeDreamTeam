@@ -5,6 +5,7 @@ from numpy import random
 import math
 
 df = pd.read_csv('pokemon.csv', index_col = 30) # Read by Pokemon Name
+tc = pd.read_csv('type_chart.csv', index_col = 0)
 
 class PokemonMember:
 
@@ -24,6 +25,7 @@ class PokemonMember:
 
         self.moves = moves #A list of strings
         self.moveData = [''] * len(moves)
+        self.pp = [0] * len(moves)
 
         self.leading = False
         self.status = "NONE"
@@ -57,16 +59,25 @@ class PokemonMember:
     # B - Base, I - Individual Value, E - Effort Value, L - Level, N - Nature (assume 1)
 
     def getMoveData(self):
+
+        """ Convert the string input to move data using the pokebase api """
+
         for i in range(len(self.moves)):
             name = self.moves[i].replace(" ", "-")
             #print(self.moves[i])
             self.moveData[i] = pb.move(name)
+            self.pp[i] = self.moveData.pp
 
     def checkEffectiveness(self, move_index, opp_type):
+
+        """ Checks effectiveness of a move against the opponent's type """
+
         e = 1
         for t in opp_type:
-            check = "against_" + self.moveData[i].type
-            e = e * df.loc[self.name][check]
+            tt = t.title()
+            move = self.moveData[move_index].type
+            e = e * tc.loc[move][tt]
+            #e = e * df.loc[self.name][check]
         return e
 
 print(PokemonMember('luxray', 40, ["spark", "bite", "charge", "quick attack"]))
