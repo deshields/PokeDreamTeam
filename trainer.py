@@ -78,4 +78,5 @@ class TrainerAI(AI):
             # Check if the move inflicts damage or is a status move.
 
             # TODO: Do pre-calculations as to possible damage outcomes then choose the highest for next damaging move
+            # TODO: when round counter goes up in battle, use the selected move then decrease pp for that move
             check = max(findEff())
