@@ -9,13 +9,20 @@ tc = pd.read_csv('type_chart.csv', index_col = 0)
 
 class PokemonMember:
 
-    def __init__(self, name, lvl, moves):
+    def __init__(self, name, abil, lvl, moves, item):
+        # TODO: account for hidden ability?
+
         self.name = name.title()
         self.level = lvl
         self.type = [df.loc[self.name]['type1']]
         if df.loc[self.name]['type2'] != "":
             self.type.append(df.loc[self.name]['type2'])
-        self.ability = df.loc[self.name]['abilities']
+
+        if abil != []:
+            self.ability = abil
+        else:
+            self.ability = df.loc[self.name]['abilities']
+
         self.hp = df.loc[self.name]['hp']
         self.att = df.loc[self.name]['attack']
         self.defe = df.loc[self.name]['defense']
@@ -26,9 +33,12 @@ class PokemonMember:
         self.moves = moves #A list of strings
         self.moveData = [''] * len(moves)
         self.pp = [0] * len(moves)
+        self.held_item = item # string until item class is made
 
-        self.leading = False
-        self.status = "NONE"
+        self.status = "NONE" # "SLEEP", "PARALYZED", "FROZEN", "POISONED", "BURNED"
+
+
+        # TODO: IMPLEMENT HELD ITEMS
 
         self.calculateStats()
         self.getMoveData()
@@ -46,6 +56,7 @@ class PokemonMember:
         print("Sp. Defense: ", self.spdef)
         print("Speed: ", self.speed)
         print("Moves ", self.moves)
+        print("Held Item: ", self.held_item)
 
     def calculateStats(self):
         self.att = math.floor(math.floor((2 * self.att + 0 + random.randint(0, 63)) * self.level / 100 + 5) * 1)
@@ -66,7 +77,7 @@ class PokemonMember:
             name = self.moves[i].replace(" ", "-")
             #print(self.moves[i])
             self.moveData[i] = pb.move(name)
-            self.pp[i] = self.moveData.pp
+            self.pp[i] = self.moveData[i].pp
 
     def checkEffectiveness(self, move_index, opp_type):
 
@@ -80,4 +91,4 @@ class PokemonMember:
             #e = e * df.loc[self.name][check]
         return e
 
-print(PokemonMember('luxray', 40, ["spark", "bite", "charge", "quick attack"]))
+print(PokemonMember('luxray', [], 40, ["spark", "bite", "charge", "quick attack"], "NONE"))
