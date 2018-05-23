@@ -5,7 +5,7 @@ import pokebase as pb
 from numpy import random
 
 from poke import PokemonMember
-from battle import *
+#from battle import * # causes it to print twice
 
 def set_opponent(TrainerA, TrainerB):
     TrainerA.opponent.append(TrainerB)
@@ -23,18 +23,18 @@ def makeAPIFriendly(l_string):
 
 
 
-class TrainerAI(AI):
+class TrainerAI:
 
     def __init__(self, name, team, side, items, generation):
-        ### Gen = region
-        assert(side == "ALLY" or side == "ENEMY")
+
+        assert(side == "A" or side == "B")
         assert(team != [])
-        assert(region == "KANTO" or region == "JOHTO" or region == "HOENN" or region == "SINNOH" or region == "UNOVA")
+        #assert(region == "KANTO" or region == "JOHTO" or region == "HOENN" or region == "SINNOH" or region == "UNOVA")
         self.name = name # String - optional
-        self.team = team # List of strings [ ["pikachu", 10, ["thunderbolt", "spark"]], ["lickitung", 15, ["confuse ray", "lick"]] ]
+        self.team = team # List of strings [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
         self.team_count = len(team)
         self.poke_team = []
-        makeTeam()
+        self.makeTeam()
         self.lead = self.poke_team[0]
         self.lead_index = 0
         self.items = items # if use is true, list of strings, otherwise null
@@ -47,13 +47,15 @@ class TrainerAI(AI):
     def __repr__(self):
 
         print("Trainer: " + self.name)
-        print("Leading Pokemon: " + self.team[0])
-        print("Region: " + self.region)
+        print("Leading Pokemon: " + self.lead.name)
+        print("Current Health: " + str(self.lead.cur_hp) + " / " + str(self.lead.hp))
+        print("Gen: " + str(self.gen))
+        return ""
 
     def makeTeam(self):
         """ Converts string team input to PokemonMember class """
-        for p in team:
-            self.poke_team.append(PokemonMember(p[0], p[1], p[2]))
+        for p in self.team:
+            self.poke_team.append(PokemonMember(p[0], p[1], p[2], p[3], p[4]))
 
     def findEff(self):
         """ Finds the effectiveness of the user's leading pokemon's moveset against the type of the opponent. """
@@ -68,10 +70,7 @@ class TrainerAI(AI):
 
         if self.lead.moveset[mi].damage_type.name == 'physical':
             dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.opponent[0].lead.defe) ) / 50 ) + 2
-            if self.lead.status = "BURN":
-                burn = 0.5
-            else:
-                burn = 1
+            burn = 0.5 if self.lead.status == "BURN" else 1
 
         else:
             dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.opponent[0].lead.spdef) ) / 50 ) + 2
@@ -98,10 +97,7 @@ class TrainerAI(AI):
 
         # STAB
 
-        if self.lead.moveset[mi].type.name in self.lead.type:
-            stab = 1.5
-        else:
-            stab = 1
+        stab = 1.5 if self.lead.moveset[mi].type.name in self.lead.type else 1
 
         # Type effectiveness
 
@@ -117,7 +113,7 @@ class TrainerAI(AI):
 
 
     def isCrit(self, mi):
-        # TODO: Critical Hit
+        """ Returns 2 if crit, if not return 1 """
 
         high_crit = ["10,000,000 Volt Thunderbolt", "Aeroblast", "Air Cutter", "Attack Order", "Blaze Kick", "Crabhammer", "Cross Chop", "Cross Poison", "Drill Run", "Karate Chop", "Leaf Blade", "Night Slash", "Poison Tail", "Psycho Cut", "Razor Leaf", "Razor Wind", "Shadow Blast", "Shadow Claw", "Sky Attack", "Slash", "Spacial Rend", "Stone Edge" ]
         high_crit = makeAPIFriendly(high_crit)
@@ -135,7 +131,7 @@ class TrainerAI(AI):
         # HELD ITEMS
         if self.lead.held_item.lower() == "razor claw" or self.lead.held_item.lower() == "scope lens":
             stage += 1
-        if (self.lead.name.lower() == "farfetch'd" and self.lead.held_item == "Stick") or (self.lead.name.lower() == "chansey" and self.lead.held_item == "Lucky Punch")
+        if (self.lead.name.lower() == "farfetch'd" and self.lead.held_item == "Stick") or (self.lead.name.lower() == "chansey" and self.lead.held_item == "Lucky Punch"):
             stage += 2
 
         # ABILITY
@@ -192,6 +188,8 @@ class TrainerAI(AI):
 
 
     def predictTurn(self, lookahead):
+        """ returns score/dmg for each move order; we want to use the highest score next """
+        total = 0
         for sim in range(lookahead):
 
             #TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
@@ -199,32 +197,33 @@ class TrainerAI(AI):
             att_eff = findEff()
             selected_att = att_eff.index(max(att_eff))
 
+
             #self.lead.moveset[selected_att]
 
+    def switchPkmn(self):
+        self.lead_index += 1
+
+        if(self.lead_index >= self.team_count):
+            self.lead_index = 0
+
+        while(self.poke_team[self.lead_index].canBattle == False):
+            self.lead_index += 1
+
+        # print("Switched out " + self.lead.name + " for " + self.poke_team[self.lead_index].name)
+        # print("")
+        self.lead = self.poke_team[self.lead_index]
 
 
     def nextTurn(self):
         """ Trainer decides what the next best move should be """
 
-
         if(self.items != [] and self.lead.cur_hp <= self.lead.hp * .15):
             # TODO: INITIALIZE ITEMS
             # use self.items[0]
+            print(" Item ")
 
         elif(self.team_count > 1 and (self.lead.cur_hp == self.lead.hp * .2 and self.lead.status != "NONE")):
-            #When to switch
-
-
-            self.lead_index += 1
-            if(self.lead_index >= self.team_count):
-                self.lead_index = 0
-
-            while(self.poke_team[self.lead_index].cur_hp <= 0):
-                self.lead_index += 1
-
-            print("Switched out " + self.lead + " for " + self.poke_team[self.lead_index])
-            self.lead = self.poke_team[self.lead_index]
-
+            switchPkmn()
 
         else:
             # TODO: Do we want to inflict damgage, increase/decrease stats, or inflict a status move?
@@ -233,6 +232,12 @@ class TrainerAI(AI):
             #       Check if the move inflicts damage or is a status move.
 
 
-
+            Print("Move")
             # TODO: Do pre-calculations as to possible damage outcomes then choose the highest for next damaging move
             # TODO: when round counter goes up in battle, use the selected move then decrease pp for that move
+
+
+Rai = TrainerAI("Rai", [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ], "A", [], 4)
+print(Rai)
+Rai.switchPkmn()
+print(Rai)

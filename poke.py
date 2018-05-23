@@ -18,11 +18,7 @@ class PokemonMember:
         if df.loc[self.name]['type2'] != "":
             self.type.append(df.loc[self.name]['type2'])
 
-        if abil != []:
-            self.ability = abil
-        else:
-            self.ability = df.loc[self.name]['abilities']
-
+        self.ability = abil if abil != [] else df.loc[self.name]['abilities']
         self.hp = df.loc[self.name]['hp']
         self.att = df.loc[self.name]['attack']
         self.defe = df.loc[self.name]['defense']
@@ -36,6 +32,8 @@ class PokemonMember:
         self.held_item = item # string until item class is made
 
         self.status = "NONE" # "SLEEP", "PARALYZED", "FROZEN", "POISONED", "BURNED"
+
+        self.canBattle = True
 
 
         # TODO: IMPLEMENT HELD ITEMS
@@ -57,6 +55,7 @@ class PokemonMember:
         print("Speed: ", self.speed)
         print("Moves ", self.moves)
         print("Held Item: ", self.held_item)
+        return ""
 
     def calculateStats(self):
         self.att = math.floor(math.floor((2 * self.att + 0 + random.randint(0, 63)) * self.level / 100 + 5) * 1)
@@ -91,4 +90,4 @@ class PokemonMember:
             #e = e * df.loc[self.name][check]
         return e
 
-print(PokemonMember('luxray', [], 40, ["spark", "bite", "charge", "quick attack"], "NONE"))
+#print(PokemonMember('luxray', [], 40, ["spark", "bite", "charge", "quick attack"], "NONE"))
