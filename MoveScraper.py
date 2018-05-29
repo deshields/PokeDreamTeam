@@ -2,6 +2,12 @@ from urllib.request import Request, urlopen
 import csv
 from bs4 import BeautifulSoup
 
+all_page = "statuses/All Moves.html"
+all = open(all_page)
+all_soup = BeautifulSoup(all, 'html5lib')
+all_table = all_soup.find_all("table", class_="sortable")[0]
+atr = all_table.find_all("tr")[1:]
+
 sleep_page = "statuses/Sleep.html"
 sleep = open(sleep_page)
 sleep_soup = BeautifulSoup(sleep, 'html5lib')
@@ -40,11 +46,17 @@ bptr = bad_poison_table.find_all("tr")[1:]
 
 
 with open("status_causing_moves.csv", 'w') as init:
-    hdrs = ["Move", "Type", "Category", "Probability", "Power", "Accuracy", "Effect", "Notes"]
+    hdrs = ["Move", "No.", "Type", "Category", "Power", "PP", "Accuracy", "Effect", "Notes"] # Effect => ["Freeze", 6.67]
     writer = csv.DictWriter(csvfile, fieldnames=hdrs)
     writer.writeheader()
 
-    for tr in str:
+    # Scan all moves first
+    for tr in atr:
         tds = tr.find_all('td')
+        dict = {"Move": tds[1], "No.": tds[0], "Type": tds[2], "Category":tds[3], "Power":tds[6], "PP":tds[5], "Accuracy":tds[7] }
+        writer.writerow(dict)
+
+
+
         print("Move: %s Type: %s Category: %s" % \
             (tds[0].text, tds[1].text, tds[2].text))
