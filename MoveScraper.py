@@ -55,9 +55,11 @@ bptr = bad_poison_table.find_all("tr")[1:]
 #     # Scan all moves first
     # for tr in atr:
 # tds = atr[1].find_all('td') # this works
-for tr in range(1, len(atr)):
-    tds = atr[tr].find_all('td')
-    print("Result: ", tds[4].text)
+
+
+for tr in range(1, len(atr)):   # now
+    tds = atr[tr].find_all('td') # this
+    print("Result: ", tds[4].text) # does
 #         dict = {"Name": tds[1].text, "No.": tds[0].text, "Type": tds[2].text, "Category":tds[3].text, "Power": tds[6].text, "PP": tds[5].text, "Accuracy":tds[7].text, "Effect": [] }
 #         writer.writerow(dict)
 #
