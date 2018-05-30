@@ -47,21 +47,40 @@ bptr = bad_poison_table.find_all("tr")[1:]
 # TODO: add the other effects before the write statement
 
 
-# with open("status_causing_moves.csv", 'w') as init:
-#     hdrs = ["Name", "No.", "Type", "Category", "Power", "PP", "Accuracy", "Effect", "Notes"] # Effect => ["Freeze", 6.67]
-#     writer = csv.DictWriter(init, fieldnames=hdrs)
-#     writer.writeheader()
-#
+with open("status_causing_moves.csv", 'w') as init:
+    hdrs = ["Name", "No.", "Type", "Category", "Power", "PP", "Accuracy", "Effect", "Notes"] # Effect => ["Freeze", 6.67]
+    writer = csv.DictWriter(init, fieldnames=hdrs)
+    writer.writeheader()
+
 #     # Scan all moves first
-    # for tr in atr:
+
 # tds = atr[1].find_all('td') # this works
 
+    for tr in range(1, len(atr)):   # now
+        note = []
+        tds = atr[tr].find_all('td') # this
+        #print("Result: ", tds[4].text) # does
 
-for tr in range(1, len(atr)):   # now
-    tds = atr[tr].find_all('td') # this
-    print("Result: ", tds[4].text) # does
-#         dict = {"Name": tds[1].text, "No.": tds[0].text, "Type": tds[2].text, "Category":tds[3].text, "Power": tds[6].text, "PP": tds[5].text, "Accuracy":tds[7].text, "Effect": [] }
-#         writer.writerow(dict)
+
+        if tds[3].find('a')['title'] == "Physical move":
+            cat = "Physical"
+        elif tds[3].find('a')['title'] == "Status move":
+            cat = "Status"
+        else:
+            cat = "Special"
+
+        try:
+            if "*" in tds[7].text:
+                note.append(tds[7].find("span")['title'])
+                tds[7].text.replace("*", "")
+                tds[7].text.strip("%*")
+            acc = (float(tds[7].text.replace("%",""))/100)
+        except ValueError:
+            acc = tds[7].text
+        #
+        dict = {"Name": tds[1].find('a').text, "No.": tds[0].text, "Type": tds[2].find("a").find("span").text, "Category":cat, "Power": tds[6].text, "PP": tds[5].text, "Accuracy": acc, "Effect": [], "Notes": note }
+        writer.writerow(dict)
+
 #
 #     #TODO: check for status-inducing moves and update accordingly
 #
