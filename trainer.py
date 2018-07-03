@@ -31,7 +31,7 @@ class TrainerAI:
         assert(team != [])
         #assert(region == "KANTO" or region == "JOHTO" or region == "HOENN" or region == "SINNOH" or region == "UNOVA")
         self.name = name # String - optional
-        self.team = team # List of strings [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
+        self.team = team # List of strings or Pokemon Objects [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
         self.team_count = len(team)
         self.poke_team = []
         self.makeTeam()
@@ -40,9 +40,11 @@ class TrainerAI:
         self.items = items # if use is true, list of strings, otherwise null
         self.gen = generation # String - optional
         self.opponent = []
+        self.toAttack = ''
+        self.side = side
 
         self.prev_decision = ["None", "None"] # will update to ["Move", "Flamethrower"], ["Item", "Potion"], ["Switch", "Pokemon-Swapped-In"]
-
+        self.out = False # gets set to True if all PKMN are at 0
 
     def __repr__(self):
 
@@ -58,23 +60,39 @@ class TrainerAI:
             self.poke_team.append(PokemonMember(p[0], p[1], p[2], p[3], p[4]))
 
     def findEff(self):
-        """ Finds the effectiveness of the user's leading pokemon's moveset against the type of the opponent. """
+        """ Finds the effectiveness of the user's leading pokemon's moveset against the type of the opponent.
+            Returns a list
+         """
         move_eff = []
-        for i in range(len(self.moveData)):
-            move_eff.append(self.lead.checkEffectiveness(i, self.opponent[0].lead.type))
+        opp_eff = []
+        for opp in self.opponent:
+            for i in range(len(self.moveData)):
+                opp_eff.append(self.lead.checkEffectiveness(i, self.opp.lead.type))\
+            move_eff.append(opp_eff)
         return move_eff
+
+    def selectOpp(self):
+        moves = findEff()
+        self.toAttack = self.opponent[moves.index(max(moves))]
 
 
     def DamageCalc(self, mi, battle):
-        """ https://bulbapedia.bulbagarden.net/wiki/Damage , mi is the move index, battle is the battle class it's in"""
+        """ Calculate damage against opponent
+        https://bulbapedia.bulbagarden.net/wiki/Damage ,
+        mi is the move index, battle is the battle class it's in"""
 
-        if self.lead.moveset[mi].damage_type.name == 'physical':
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.opponent[0].lead.defe) ) / 50 ) + 2
-            burn = 0.5 if self.lead.status == "BURN" else 1
+        selectOpp()
+
+        print(self.lead.name + " used " + self.lead.moveset[mi].name + " on " + self.toAttack.name)
+
+        if self.lead.moveset[mi].damage_class.name == 'physical':
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.opponent[self.toAttack].lead.defe) ) / 50 ) + 2
+            burn = 0.5 if self.lead.status == "BURNED" else 1
 
         else:
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.opponent[0].lead.spdef) ) / 50 ) + 2
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.opponent[self.toAttack].lead.spdef) ) / 50 ) + 2
             burn = 1
+
         ### Modifier Calculations
 
         # Weather
@@ -101,8 +119,8 @@ class TrainerAI:
 
         # Type effectiveness
 
-        t = findEff()
-        t = t[mi]
+        type_list = findEff()
+        t = type_list[0][mi] # TODO: For now, always attack the opponent in index 0
 
         # THIS MODIFIER IS ONLY TO BE USED FOR SINGLE BATTLES SINCE THERE IS ONE TARGET
 
@@ -189,16 +207,12 @@ class TrainerAI:
 
     def predictTurn(self, lookahead):
         """ returns score/dmg for each move order; we want to use the highest score next """
-        total = 0
+        # lookahead would be no greater than one
         for sim in range(lookahead):
-
-            #TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
-
+            # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
             att_eff = findEff()
             selected_att = att_eff.index(max(att_eff))
-
-
-            #self.lead.moveset[selected_att]
+            total += DamageCalc()
 
     def switchPkmn(self):
         self.lead_index += 1
@@ -213,17 +227,26 @@ class TrainerAI:
         # print("")
         self.lead = self.poke_team[self.lead_index]
 
+    def useItem(self, item):
+        if "potion" in self.items:
+            self.lead.cur_hp += 20
+            if self.lead.cur_hp > self.lead.hp:
+                self.lead.cur_hp = self.lead.hp
+            self.items[index("potion")] = ""
+
+        elif "full restore" in self.items:
+            self.lead.cur_hp = self.lead.hp
+            self.items[index("full restore")] = ""
 
     def nextTurn(self):
         """ Trainer decides what the next best move should be """
 
         if(self.items != [] and self.lead.cur_hp <= self.lead.hp * .15):
-            # TODO: INITIALIZE ITEMS
-            # use self.items[0]
-            print(" Item ")
-
+            #useItem(self.items[0])
+            return "Item"
         elif(self.team_count > 1 and (self.lead.cur_hp == self.lead.hp * .2 and self.lead.status != "NONE")):
-            switchPkmn()
+            #switchPkmn()
+            return "Switch"
 
         else:
             # TODO: Do we want to inflict damgage, increase/decrease stats, or inflict a status move?
@@ -231,13 +254,19 @@ class TrainerAI:
             #       If no, go for it. If sleep, frozen, or paralyze, increase your stats and attack next turn.
             #       Check if the move inflicts damage or is a status move.
 
-
-            Print("Move")
             # TODO: Do pre-calculations as to possible damage outcomes then choose the highest for next damaging move
             # TODO: when round counter goes up in battle, use the selected move then decrease pp for that move
+
+            return "Fight"
 
 
 Rai = TrainerAI("Rai", [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ], "A", [], 4)
 print(Rai)
 Rai.switchPkmn()
+print ("Rai switched Pokemon!")
 print(Rai)
+
+
+## Some Defaults
+
+Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ])

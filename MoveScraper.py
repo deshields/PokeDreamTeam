@@ -70,10 +70,10 @@ with open("status_causing_moves.csv", 'w') as init:
             cat = "Special"
 
         try:
-            if "*" in tds[7].text:
+            if "*" in tds[7].text or "%*" in tds[7].text:
                 note.append(tds[7].find("span")['title'])
                 tds[7].text.replace("*", "")
-                tds[7].text.strip("%*")
+                tds[7].text.replace("%*", "")
             acc = (float(tds[7].text.replace("%",""))/100)
         except ValueError:
             acc = tds[7].text

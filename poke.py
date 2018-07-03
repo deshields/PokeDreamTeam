@@ -31,9 +31,9 @@ class PokemonMember:
         self.pp = [0] * len(moves)
         self.held_item = item # string until item class is made
 
-        self.status = "NONE" # "SLEEP", "PARALYZED", "FROZEN", "POISONED", "BURNED"
+        self.status = ["NONE", -1] # "FAINTED", "SLEEP", "PARALYZED", "FROZEN", "BADLY POISONED", "POISONED", "BURNED" - if [-1] is the second value, then it stays until cured
 
-        self.canBattle = True
+        self.canBattle = True #False means "Fainted"
 
 
         # TODO: IMPLEMENT HELD ITEMS
