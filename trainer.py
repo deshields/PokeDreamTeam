@@ -7,10 +7,6 @@ from numpy import random
 from poke import PokemonMember
 #from battle import * # causes it to print twice
 
-def set_opponent(TrainerA, TrainerB):
-    TrainerA.opponent.append(TrainerB)
-    TrainerB.opponent.append(TrainerA)
-
 def makeAPIFriendly(l_string):
     """ Makes it easier for API to read
         l_string = list of strings """
@@ -40,11 +36,12 @@ class TrainerAI:
         self.items = items # if use is true, list of strings, otherwise null
         self.gen = generation # String - optional
         self.opponent = []
-        self.toAttack = ''
-        self.side = side
+        self.toAttack = None # Trainer class
+        self.side = side # 'A' or 'B'
 
         self.prev_decision = ["None", "None"] # will update to ["Move", "Flamethrower"], ["Item", "Potion"], ["Switch", "Pokemon-Swapped-In"]
         self.out = False # gets set to True if all PKMN are at 0
+        self.score = 0 # +1 for every opponent Pokemon defeated -1 for every owned pokemon defeated
 
     def __repr__(self):
 
@@ -52,6 +49,7 @@ class TrainerAI:
         print("Leading Pokemon: " + self.lead.name)
         print("Current Health: " + str(self.lead.cur_hp) + " / " + str(self.lead.hp))
         print("Gen: " + str(self.gen))
+        print("Opponent: ", self.opponent.name)
         return ""
 
     def makeTeam(self):
@@ -67,13 +65,13 @@ class TrainerAI:
         opp_eff = []
         for opp in self.opponent:
             for i in range(len(self.moveData)):
-                opp_eff.append(self.lead.checkEffectiveness(i, self.opp.lead.type))\
+                opp_eff.append(self.lead.checkEffectiveness(i, self.opp.lead.type))
             move_eff.append(opp_eff)
         return move_eff
 
-    def selectOpp(self):
-        moves = findEff()
-        self.toAttack = self.opponent[moves.index(max(moves))]
+    def selectOpponent(self):
+        self.type_list = findEff()
+        self.toAttack = self.opponent[moves.index(max(type_list))]
 
 
     def DamageCalc(self, mi, battle):
@@ -81,16 +79,17 @@ class TrainerAI:
         https://bulbapedia.bulbagarden.net/wiki/Damage ,
         mi is the move index, battle is the battle class it's in"""
 
-        selectOpp()
+        # Type effectiveness
 
-        print(self.lead.name + " used " + self.lead.moveset[mi].name + " on " + self.toAttack.name)
+
+        print(self.lead.name + " used " + self.lead.moveset[mi].name + " on " + self.toAttack.lead.name)
 
         if self.lead.moveset[mi].damage_class.name == 'physical':
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.opponent[self.toAttack].lead.defe) ) / 50 ) + 2
-            burn = 0.5 if self.lead.status == "BURNED" else 1
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.toAttack.lead.defe) ) / 50 ) + 2
+            burn = 0.5 if self.lead.status[0] == "BURNED" else 1
 
         else:
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.opponent[self.toAttack].lead.spdef) ) / 50 ) + 2
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.toAttack.lead.spdef) ) / 50 ) + 2
             burn = 1
 
         ### Modifier Calculations
@@ -117,10 +116,8 @@ class TrainerAI:
 
         stab = 1.5 if self.lead.moveset[mi].type.name in self.lead.type else 1
 
-        # Type effectiveness
 
-        type_list = findEff()
-        t = type_list[0][mi] # TODO: For now, always attack the opponent in index 0
+        t = self.type_list[0][mi] # TODO: For now, always attack the opponent in index 0
 
         # THIS MODIFIER IS ONLY TO BE USED FOR SINGLE BATTLES SINCE THERE IS ONE TARGET
 
@@ -205,23 +202,31 @@ class TrainerAI:
 
 
 
-    def predictTurn(self, lookahead):
+    def predictDMG(self, battle):
         """ returns score/dmg for each move order; we want to use the highest score next """
         # lookahead would be no greater than one
-        for sim in range(lookahead):
+        score = [len(self.lead.moveData)]
+        for sim in len(self.lead.moveData):
             # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
-            att_eff = findEff()
-            selected_att = att_eff.index(max(att_eff))
-            total += DamageCalc()
+            # att_eff = findEff()
+            # selected_att = att_eff.index(max(att_eff))
+            score[sim] = DamageCalc(sim, battle)
+
+        print(self.lead.name + " used " + self.lead.moves[score.index(max(score))] + "!")
+        return [score.index(max(score)), max(score)]
 
     def switchPkmn(self):
         self.lead_index += 1
 
-        if(self.lead_index >= self.team_count):
-            self.lead_index = 0
-
         while(self.poke_team[self.lead_index].canBattle == False):
-            self.lead_index += 1
+            out +=1
+            if(self.lead_index >= self.team_count):
+                self.lead_index = 0
+            else:
+                self.lead_index += 1
+            if(out >= self.team_count):
+                self.out = True
+                return # Doesn't switch
 
         # print("Switched out " + self.lead.name + " for " + self.poke_team[self.lead_index].name)
         # print("")
@@ -244,7 +249,7 @@ class TrainerAI:
         if(self.items != [] and self.lead.cur_hp <= self.lead.hp * .15):
             #useItem(self.items[0])
             return "Item"
-        elif(self.team_count > 1 and (self.lead.cur_hp == self.lead.hp * .2 and self.lead.status != "NONE")):
+        elif(self.team_count > 1 and (self.lead.cur_hp == self.lead.hp * .2 and self.lead.status[0] != "NONE")):
             #switchPkmn()
             return "Switch"
 
@@ -261,12 +266,12 @@ class TrainerAI:
 
 
 Rai = TrainerAI("Rai", [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ], "A", [], 4)
-print(Rai)
-Rai.switchPkmn()
-print ("Rai switched Pokemon!")
-print(Rai)
+# print(Rai)
+# Rai.switchPkmn()
+# print ("Rai switched Pokemon!")
+# print(Rai)
 
 
 ## Some Defaults
 
-Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ])
+Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)

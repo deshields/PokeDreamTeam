@@ -26,13 +26,15 @@ class PokemonMember:
         self.spdef = df.loc[self.name]['sp_defense']
         self.speed = df.loc[self.name]['speed']
 
+        self.apiData = pb.pokemon(name.lower())
+
         self.moves = moves #A list of strings
-        self.moveData = [''] * len(moves)
+        self.moveData = [''] * len(moves) # move objects from API
         self.pp = [0] * len(moves)
         self.held_item = item # string until item class is made
 
         self.status = ["NONE", -1] # "FAINTED", "SLEEP", "PARALYZED", "FROZEN", "BADLY POISONED", "POISONED", "BURNED" - if [-1] is the second value, then it stays until cured
-
+        self.sub_status = [] # "INLOVE", "CONFUSED", "PROTECTED", "AIRBORNE", "LOCKED ON" <- Basically the stackable statuses
         self.canBattle = True #False means "Fainted"
 
 
