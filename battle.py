@@ -6,9 +6,6 @@ def set_opponent(TrainerA, TrainerB):
     TrainerA.opponent.append(TrainerB)
     TrainerB.opponent.append(TrainerA)
 
-tc1 = 0
-tc2 = 0
-
 class Battle:
     # Single Battle Only For Now, not taking player items into account
     # In double battle, use set_opponent to switch targets OR just iterate through the list of opponents
@@ -88,12 +85,10 @@ class Battle:
                 print("The attack missed!")
                 return
 
-        tc2 +=1
-        print("tc2", tc2)
         dmg = attacker.predictDMG(self)[1]
 
         defender.lead.cur_hp = defender.lead.cur_hp - dmg
-        print(defender.lead.name + " took " + dmg + " damage!")
+        print(defender.lead.name + " took " + str(dmg) + " damage!")
         if(defender.lead.cur_hp <= 0):
             print(defender.lead.name + " fainted!")
             attacker.score += 1
@@ -156,8 +151,6 @@ class Battle:
 
             choice = p.nextTurn()
             if p.lead.canBattle == True:
-                tc1+=1
-                print("tc1", tc1)
                 if choice == "Item":
                     print(p.name + " used an item!")
                     p.useItem()

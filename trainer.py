@@ -234,14 +234,19 @@ class TrainerAI:
     def predictDMG(self, battle):
         """ returns score/dmg for each move order; we want to use the highest score next """
         # lookahead would be no greater than one
-        score = [len(self.lead.moveData)]
+        score = [0 for x in range(len(self.lead.moveData))]
+        print(score)
         for sim in range(len(self.lead.moveData)):
+            print(sim)
             # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
             # att_eff = findEff()
             # selected_att = att_eff.index(max(att_eff))
-            score[sim] = self.DamageCalc(sim, battle)
+            if self.lead.moveData[sim].power != None:
+                score[sim] = self.DamageCalc(sim, battle)
+            else:
+                score[sim] = 0
 
-        print(self.lead.name + " used " + self.lead.moves[score.index(max(score))] + "!")
+        print(self.lead.name + " used " + str(self.lead.moves[score.index(max(score))]) + "!")
         return [score.index(max(score)), max(score)]
 
     def switchPkmn(self):
