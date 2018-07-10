@@ -13,7 +13,7 @@ def makeAPIFriendly(l_string):
 
     for i in range(len(l_string)):
         l_string[i] = l_string[i].replace(" ", "-")
-        l_string[i] = l_string.lower()
+        l_string[i] = l_string[i].lower()
 
     return l_string
 
@@ -38,6 +38,7 @@ class TrainerAI:
         self.opponent = []
         self.toAttack = None # Trainer class
         self.side = side # 'A' or 'B'
+        self.type_list = None
 
         self.prev_decision = ["None", "None"] # will update to ["Move", "Flamethrower"], ["Item", "Potion"], ["Switch", "Pokemon-Swapped-In"]
         self.out = False # gets set to True if all PKMN are at 0
@@ -49,7 +50,7 @@ class TrainerAI:
         print("Leading Pokemon: " + self.lead.name)
         print("Current Health: " + str(self.lead.cur_hp) + " / " + str(self.lead.hp))
         print("Gen: " + str(self.gen))
-        print("Opponent: ", self.opponent.name)
+        print("Opponent: ", self.opponent[0].name)
         return ""
 
     def makeTeam(self):
@@ -64,14 +65,19 @@ class TrainerAI:
         move_eff = []
         opp_eff = []
         for opp in self.opponent:
-            for i in range(len(self.moveData)):
-                opp_eff.append(self.lead.checkEffectiveness(i, self.opp.lead.type))
+            for i in range(len(self.lead.moveData)):
+                opp_eff.append(self.lead.checkEffectiveness(i, self.toAttack.lead.type))
+                # if len(self.toAttack.lead.type) == 2:
+
             move_eff.append(opp_eff)
         return move_eff
 
     def selectOpponent(self):
-        self.type_list = findEff()
-        self.toAttack = self.opponent[moves.index(max(type_list))]
+        self.type_list = self.findEff()
+        if len(self.opponent) > 1:
+            self.toAttack = self.opponent[moves.index(max(type_list))]
+        else:
+            self.toAttack = self.opponent[0]
 
 
     def DamageCalc(self, mi, battle):
@@ -80,24 +86,24 @@ class TrainerAI:
         mi is the move index, battle is the battle class it's in"""
 
         # Type effectiveness
+        self.selectOpponent()
 
+        print("Testing: " + self.lead.name + " used " + self.lead.moveData[mi].name + " on " + self.toAttack.lead.name)
 
-        print(self.lead.name + " used " + self.lead.moveset[mi].name + " on " + self.toAttack.lead.name)
-
-        if self.lead.moveset[mi].damage_class.name == 'physical':
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.att / self.toAttack.lead.defe) ) / 50 ) + 2
+        if self.lead.moveData[mi].damage_class.name == 'physical':
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveData[mi].power * (self.lead.att / self.toAttack.lead.defe) ) / 50 ) + 2
             burn = 0.5 if self.lead.status[0] == "BURNED" else 1
 
         else:
-            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveset[mi].power * (self.lead.spatt / self.toAttack.lead.spdef) ) / 50 ) + 2
+            dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveData[mi].power * (self.lead.spatt / self.toAttack.lead.spdef) ) / 50 ) + 2
             burn = 1
 
         ### Modifier Calculations
 
         # Weather
-        if (self.lead.moveset[mi].type.name == 'fire' and battle.weather == "SUNNY") or (self.lead.moveset[mi].type.name == 'water' and battle.weather == "RAIN"):
+        if (self.lead.moveData[mi].type.name == 'fire' and battle.weather == "SUNNY") or (self.lead.moveData[mi].type.name == 'water' and battle.weather == "RAIN"):
             w = 1.5
-        elif (self.lead.moveset[mi].type.name == 'water' and battle.weather == "SUNNY") or (self.lead.moveset[mi].type.name == 'fire' and battle.weather == "RAIN"):
+        elif (self.lead.moveData[mi].type.name == 'water' and battle.weather == "SUNNY") or (self.lead.moveData[mi].type.name == 'fire' and battle.weather == "RAIN"):
             w = 0.5
 
         else:
@@ -114,14 +120,14 @@ class TrainerAI:
 
         # STAB
 
-        stab = 1.5 if self.lead.moveset[mi].type.name in self.lead.type else 1
+        stab = 1.5 if self.lead.moveData[mi].type.name in self.lead.type else 1
 
 
         t = self.type_list[0][mi] # TODO: For now, always attack the opponent in index 0
 
         # THIS MODIFIER IS ONLY TO BE USED FOR SINGLE BATTLES SINCE THERE IS ONE TARGET
 
-        modifer = w * isCrit(mi) * r * stab * t * burn # * other ( * badge for gen ii)
+        modifier = w * self.isCrit(mi) * r * stab * t * burn # * other ( * badge for gen ii)
 
         return modifier * dmg
 
@@ -138,9 +144,9 @@ class TrainerAI:
         # if self.gen >= 2 and self.gen <=5: #for probability
 
         # MOVE STAGES
-        if self.lead.moveset[mi].type.name in high_crit:
+        if self.lead.moveData[mi].type.name in high_crit:
             stage += 1
-            if self.gen == 2 or self.lead.moveset[mi].type.name == "10,000,000-volt-thunderbolt":
+            if self.gen == 2 or self.lead.moveData[mi].type.name == "10,000,000-volt-thunderbolt":
                     stage += 1
 
         # HELD ITEMS
@@ -155,49 +161,72 @@ class TrainerAI:
 
         ### PROBABILITY
 
-            if stage == 0:
-                if self.gen >= 2 and self.gen <=6:
-                    crit_chance = randint(1,17)
-                    return 2 if crit_chance == 8 else 1
-
-                elif self.gen >= 7:
-                    crit_chance = randint(1,25)
-                    return 2 if crit_chance == 8 else 1
-
-                else:
-                    return 1
-
-            elif stage == 1:
-                if self.gen >= 2:
-                    crit_chance = randint(1,9)
-                    return 2 if crit_chance == 4 else 1
-                else:
-                    return 1
-
-            elif stage == 2:
-                if self.gen >= 2 and self.gen <=5:
-                    crit_chance = randint(1,5)
-                    return 2 if crit_chance == 2 else 1
-
-                elif  self.gen > 5:
-                    crit_chance = randint(1,3)
-                    return 2 if crit_chance == 2 else 1
-
-            elif stage >= 3:
-                if self.gen > 5:
+        if stage == 0:
+            if self.gen >= 2 and self.gen <=6:
+                crit_chance = random.randint(1,17)
+                if crit_chance == 8:
+                    print("Critical hit!")
                     return 2
+                else: return 1
 
-                elif self.gen >= 2 and self.gen <= 5:
-                    if stage == 3:
-                        crit_chance = randint(1,4)
-                        return 2 if crit_chance == 2 else 1
+            elif self.gen >= 7:
+                crit_chance = random.randint(1,25)
+                if crit_chance == 8:
+                    print("Critical hit!")
+                    return 2
+                else: return 1
 
-                    elif stage == 4:
-                        crit_chance = randint(1,3)
-                        return 2 if crit_chance == 2 else 1
+            else:
+                return 1
 
-                else:
-                    return 1
+        elif stage == 1:
+            if self.gen >= 2:
+                crit_chance = random.randint(1,9)
+                if crit_chance == 4:
+                    print("Critical hit!")
+                    return 2
+                else: return 1
+            else:
+                return 1
+
+        elif stage == 2:
+            if self.gen >= 2 and self.gen <=5:
+                crit_chance = random.randint(1,5)
+                if crit_chance == 2:
+                    print("Critical hit!")
+                    return 2
+                else: return 1
+
+            elif  self.gen > 5:
+                crit_chance = random.randint(1,3)
+                if crit_chance == 2:
+                    print("Critical hit!")
+                    return 2
+                else: return 1
+
+        elif stage >= 3:
+            if self.gen > 5:
+                print("Critical hit!")
+                return 2
+
+            elif self.gen >= 2 and self.gen <= 5:
+                if stage == 3:
+                    crit_chance = random.randint(1,4)
+                    if crit_chance == 2:
+                        print("Critical hit!")
+                        return 2
+                    else: return 1
+
+                elif stage == 4:
+                    crit_chance = random.randint(1,3)
+                    if crit_chance == 2:
+                        print("Critical hit!")
+                        return 2
+                    else: return 1
+
+            else:
+                return 1
+
 
 
 
@@ -206,11 +235,11 @@ class TrainerAI:
         """ returns score/dmg for each move order; we want to use the highest score next """
         # lookahead would be no greater than one
         score = [len(self.lead.moveData)]
-        for sim in len(self.lead.moveData):
+        for sim in range(len(self.lead.moveData)):
             # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
             # att_eff = findEff()
             # selected_att = att_eff.index(max(att_eff))
-            score[sim] = DamageCalc(sim, battle)
+            score[sim] = self.DamageCalc(sim, battle)
 
         print(self.lead.name + " used " + self.lead.moves[score.index(max(score))] + "!")
         return [score.index(max(score)), max(score)]

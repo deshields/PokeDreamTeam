@@ -15,8 +15,9 @@ class PokemonMember:
         self.name = name.title()
         self.level = lvl
         self.type = [df.loc[self.name]['type1']]
-        if df.loc[self.name]['type2'] != "":
+        if df.loc[self.name]['type2'] != "" and type(df.loc[self.name]['type2']) is not float:
             self.type.append(df.loc[self.name]['type2'])
+
 
         self.ability = abil if abil != [] else df.loc[self.name]['abilities']
         self.hp = df.loc[self.name]['hp']
@@ -86,8 +87,10 @@ class PokemonMember:
 
         e = 1
         for t in opp_type:
+            print("T is ", t)
             tt = t.title()
-            move = self.moveData[move_index].type
+            move = self.moveData[move_index].type.name.title()
+            # move = move.title()
             e = e * tc.loc[move][tt]
             #e = e * df.loc[self.name][check]
         return e

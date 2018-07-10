@@ -6,6 +6,9 @@ def set_opponent(TrainerA, TrainerB):
     TrainerA.opponent.append(TrainerB)
     TrainerB.opponent.append(TrainerA)
 
+tc1 = 0
+tc2 = 0
+
 class Battle:
     # Single Battle Only For Now, not taking player items into account
     # In double battle, use set_opponent to switch targets OR just iterate through the list of opponents
@@ -26,6 +29,8 @@ class Battle:
         for A in self.ATeam:
             for B in self.BTeam:
                 set_opponent(A, B)
+                A.toAttack = B
+                B.toAttack = A
 
         self.findBattleOrder()
 
@@ -83,6 +88,8 @@ class Battle:
                 print("The attack missed!")
                 return
 
+        tc2 +=1
+        print("tc2", tc2)
         dmg = attacker.predictDMG(self)[1]
 
         defender.lead.cur_hp = defender.lead.cur_hp - dmg
@@ -93,6 +100,9 @@ class Battle:
             defender.score -= 1
             defender.lead.canBattle = False
 
+    def getSpeed(self, player):
+        return player.lead.speed
+
     def findBattleOrder(self):
         current_leads = []
         order = [len(self.players)]
@@ -100,7 +110,10 @@ class Battle:
         speediest = 0
         for p in self.players:
             current_leads.append(p.lead)
-        sorted(self.players, key=lambda poke: poke.lead.speed)
+
+        self.players.sort(key=self.getSpeed, reverse=True)
+        #sorted(self.players, key=lambda poke: poke.lead.speed, reverse=True)
+        print(self.players)
 
 
     def check_wins(self):
@@ -143,6 +156,8 @@ class Battle:
 
             choice = p.nextTurn()
             if p.lead.canBattle == True:
+                tc1+=1
+                print("tc1", tc1)
                 if choice == "Item":
                     print(p.name + " used an item!")
                     p.useItem()
@@ -174,5 +189,7 @@ class Battle:
 
 
 Sample_Battle = Battle('SINGLE', [Rai, Cynthia])
-# Sample_Battle.nextRound()
-print(Sample_Battle)
+print(Rai.lead)
+print(Cynthia.lead)
+Sample_Battle.nextRound()
+# print(Sample_Battle)
