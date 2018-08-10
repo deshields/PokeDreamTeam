@@ -51,7 +51,7 @@ class TrainerAI:
         self.out = False # gets set to True if all PKMN are at 0
         self.score = 0 # +1 for every opponent Pokemon defeated -1 for every owned pokemon defeated
         self.faintCount = 0
-        
+
     def __repr__(self):
 
         print("Trainer: " + self.name)
@@ -74,17 +74,26 @@ class TrainerAI:
         opp_eff = []
         for opp in self.opponent:
             for i in range(len(self.lead.moveData)):
-                opp_eff.append(self.lead.checkEffectiveness(i, self.toAttack.lead.type))
-                # if len(self.toAttack.lead.type) == 2:
+                opp_eff.append(self.lead.checkEffectiveness(i, opp.lead.type))
 
+
+                # if len(self.toAttack.lead.type) == 2:
             move_eff.append(opp_eff)
+            opp_eff = []
 
         return move_eff
 
     def selectOpponent(self):
         self.type_list = self.findEff()
         if len(self.opponent) > 1:
-            self.toAttack = self.opponent[moves.index(max(type_list))]
+
+            all_max_hits = [x for x in self.type_list if x == max(self.type_list)]
+            all_ind = [x for x in range(len(all_max_hits)) if self.opponent[x].out == False]
+            target = random.choice(all_ind)
+            #mex2 = mex.index(max(mex))
+            # print("Target ind:", target)
+            #print("M2",mex2)
+            self.toAttack = self.opponent[target]
         else:
             self.toAttack = self.opponent[0]
 
@@ -323,8 +332,9 @@ Rai = TrainerAI("Rai", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squ
 # Rai.switchPkmn()
 # print ("Rai switched Pokemon!")
 # print(Rai)
-
+Chu = TrainerAI("Chu", [ ["pikachu", "", 65, ["thunderbolt", "iron tail"], ""], ["squirtle", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
 
 ## Some Defaults
+Rai2 = TrainerAI("Rai-2", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squirtle", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
 
 Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)

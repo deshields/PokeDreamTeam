@@ -1,4 +1,4 @@
-from trainer import TrainerAI, Rai, Cynthia
+from trainer import TrainerAI, Rai, Cynthia, Chu, Rai2
 from poke import PokemonMember
 from numpy import random
 
@@ -19,6 +19,7 @@ class Battle:
         weather = "CLEAR"
         self.ATeam =[]
         self.BTeam =[]
+        self.names = [[], []]
         self.A_total = 0
         self.B_total = 0
         self.Af = 0
@@ -29,10 +30,12 @@ class Battle:
         for p in players:
             if p.side == "A":
                 self.ATeam.append(p)
+                self.names[0].append(p.name)
                 self.A_total += p.team_count
 
             else:
                  self.BTeam.append(p)
+                 self.names[1].append(p.name)
                  self.B_total += p.team_count
 
         for A in self.ATeam:
@@ -41,14 +44,16 @@ class Battle:
                 A.toAttack = B
                 B.toAttack = A
 
+        print("Battle of ", self.names[0], " vs. ", self.names[1])
+
 
         self.findBattleOrder()
 
-    def __repr__(self):
-        print("Round: ", self.round)
-        print("Trainers: ", self.players)
-
-        return ""
+    # def __repr__(self):
+    #     print("Round: ", self.round)
+    #     print("Trainers: ", self.players)
+    #
+    #     return ""
 
     def takeStatusDmg(self):
         for p in self.players:
@@ -123,7 +128,7 @@ class Battle:
 
         self.players.sort(key=self.getSpeed, reverse=True)
 
-        print(self.players)
+        # print(self.players)
 
 
     def check_wins(self):
@@ -200,7 +205,7 @@ class Battle:
 
 
 
-Sample_Battle = Battle('SINGLE', [Rai, Cynthia])
+Sample_Battle = Battle('SINGLE', [Rai, Chu, Cynthia, Rai2])
 # print(Rai.lead)
 # print(Cynthia.lead)
 # Sample_Battle.nextRound()

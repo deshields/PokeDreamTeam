@@ -10,7 +10,7 @@ from trainer import TrainerAI
 
 
 def Simulate(battle):
-    print("Battle of " + str(battle.ATeam) + " vs. " + str(battle.BTeam))
+    
     scores = []
 
     while battle.over == False:
