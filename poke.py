@@ -3,9 +3,13 @@ import pandas as pd
 import pokebase as pb
 from numpy import random
 import math
+# from flask import Flask, render_template, jsonify, request
 
 df = pd.read_csv('pokemon.csv', index_col = 30) # Read by Pokemon Name
 tc = pd.read_csv('type_chart.csv', index_col = 0)
+
+
+
 
 class PokemonMember:
 
@@ -17,7 +21,6 @@ class PokemonMember:
         self.type = [df.loc[self.name]['type1']]
         if df.loc[self.name]['type2'] != "" and type(df.loc[self.name]['type2']) is not float:
             self.type.append(df.loc[self.name]['type2'])
-
 
         self.ability = abil if abil != [] else df.loc[self.name]['abilities']
         self.hp = df.loc[self.name]['hp']
@@ -87,7 +90,6 @@ class PokemonMember:
 
         e = 1
         for t in opp_type:
-            print("T is ", t)
             tt = t.title()
             move = self.moveData[move_index].type.name.title()
             # move = move.title()

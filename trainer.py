@@ -1,11 +1,11 @@
 ### For Enemy Trainer Single Battle
+
 import csv
 import pandas as pd
 import pokebase as pb
 from numpy import random
 
 from poke import PokemonMember
-#from battle import * # causes it to print twice
 
 def makeAPIFriendly(l_string):
     """ Makes it easier for API to read
@@ -17,6 +17,13 @@ def makeAPIFriendly(l_string):
 
     return l_string
 
+def makePokemon():
+    # For JSON data in form list
+    name = request.form['name']
+    lvl = request.form['lvl']
+    moves = request.form['moves']
+    item = request.form['item']
+    Pokemon = PokemonMember(name, '', lvl, moves, item)
 
 
 class TrainerAI:
@@ -43,7 +50,8 @@ class TrainerAI:
         self.prev_decision = ["None", "None"] # will update to ["Move", "Flamethrower"], ["Item", "Potion"], ["Switch", "Pokemon-Swapped-In"]
         self.out = False # gets set to True if all PKMN are at 0
         self.score = 0 # +1 for every opponent Pokemon defeated -1 for every owned pokemon defeated
-
+        self.faintCount = 0
+        
     def __repr__(self):
 
         print("Trainer: " + self.name)
@@ -70,6 +78,7 @@ class TrainerAI:
                 # if len(self.toAttack.lead.type) == 2:
 
             move_eff.append(opp_eff)
+
         return move_eff
 
     def selectOpponent(self):
@@ -88,7 +97,7 @@ class TrainerAI:
         # Type effectiveness
         self.selectOpponent()
 
-        print("Testing: " + self.lead.name + " used " + self.lead.moveData[mi].name + " on " + self.toAttack.lead.name)
+        # print("Testing: " + self.lead.name + " used " + self.lead.moveData[mi].name + " on " + self.toAttack.lead.name)
 
         if self.lead.moveData[mi].damage_class.name == 'physical':
             dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveData[mi].power * (self.lead.att / self.toAttack.lead.defe) ) / 50 ) + 2
@@ -129,7 +138,9 @@ class TrainerAI:
 
         modifier = w * self.isCrit(mi) * r * stab * t * burn # * other ( * badge for gen ii)
 
-        return modifier * dmg
+        #print("Total damage: " + str(modifier * dmg))
+
+        return round(modifier * dmg)
 
 
 
@@ -228,43 +239,50 @@ class TrainerAI:
                 return 1
 
 
-
-
-
     def predictDMG(self, battle):
         """ returns score/dmg for each move order; we want to use the highest score next """
+
         # lookahead would be no greater than one
         score = [0 for x in range(len(self.lead.moveData))]
-        print(score)
         for sim in range(len(self.lead.moveData)):
-            print(sim)
             # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
-            # att_eff = findEff()
             # selected_att = att_eff.index(max(att_eff))
-            if self.lead.moveData[sim].power != None:
+            if self.lead.moveData[sim].power != None and self.lead.pp[sim] > 0:
                 score[sim] = self.DamageCalc(sim, battle)
             else:
                 score[sim] = 0
 
         print(self.lead.name + " used " + str(self.lead.moves[score.index(max(score))]) + "!")
+
+        self.lead.pp[score.index(max(score))] -= 1
         return [score.index(max(score)), max(score)]
 
     def switchPkmn(self):
-        self.lead_index += 1
-
-        while(self.poke_team[self.lead_index].canBattle == False):
-            out +=1
+        if len(self.team) > 1:
+            self.lead_index += 1
+            out = 0
             if(self.lead_index >= self.team_count):
                 self.lead_index = 0
-            else:
-                self.lead_index += 1
-            if(out >= self.team_count):
+
+            while(self.poke_team[self.lead_index].canBattle == False):
+                out +=1
+                if(self.lead_index >= self.team_count):
+                    self.lead_index = 0
+                else:
+                    self.lead_index += 1
+
+                if(out >= self.team_count):
+                    self.out = True
+                    return # Doesn't switch
+        else:
+            if self.lead.canBattle == False:
                 self.out = True
-                return # Doesn't switch
+
 
         # print("Switched out " + self.lead.name + " for " + self.poke_team[self.lead_index].name)
         # print("")
-        self.lead = self.poke_team[self.lead_index]
+        if self.out == False:
+            self.lead = self.poke_team[self.lead_index]
 
     def useItem(self, item):
         if "potion" in self.items:
@@ -283,6 +301,7 @@ class TrainerAI:
         if(self.items != [] and self.lead.cur_hp <= self.lead.hp * .15):
             #useItem(self.items[0])
             return "Item"
+
         elif(self.team_count > 1 and (self.lead.cur_hp == self.lead.hp * .2 and self.lead.status[0] != "NONE")):
             #switchPkmn()
             return "Switch"
@@ -299,7 +318,7 @@ class TrainerAI:
             return "Fight"
 
 
-Rai = TrainerAI("Rai", [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ], "A", [], 4)
+Rai = TrainerAI("Rai", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squirtle", "", 10, ["confuse ray", "lick"], ""] ], "A", [], 4)
 # print(Rai)
 # Rai.switchPkmn()
 # print ("Rai switched Pokemon!")

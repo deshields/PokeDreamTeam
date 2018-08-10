@@ -19,15 +19,28 @@ class Battle:
         weather = "CLEAR"
         self.ATeam =[]
         self.BTeam =[]
+        self.A_total = 0
+        self.B_total = 0
+        self.Af = 0
+        self.Bf = 0
+        self.over = False
 
         ## Set up the teams -> A Team is the user's and B is the opponent
         for p in players:
-            self.ATeam.append(p) if p.side == "A" else self.BTeam.append(p)
+            if p.side == "A":
+                self.ATeam.append(p)
+                self.A_total += p.team_count
+
+            else:
+                 self.BTeam.append(p)
+                 self.B_total += p.team_count
+
         for A in self.ATeam:
             for B in self.BTeam:
                 set_opponent(A, B)
                 A.toAttack = B
                 B.toAttack = A
+
 
         self.findBattleOrder()
 
@@ -52,9 +65,6 @@ class Battle:
     def takeBattleDmg(self, attacker, defender):
         """ Calculates the damage between two pokemon; NOTE: it does NOT account for moves like Surf in a double Battle """
         # move_index = atttacker.nextMove()
-
-        print("attacker: ", attacker)
-        print("Defender: ", defender)
 
         if "PARALYZED" in attacker.lead.status:
             if random.randint(4) == 2:
@@ -94,6 +104,11 @@ class Battle:
             attacker.score += 1
             defender.score -= 1
             defender.lead.canBattle = False
+            if defender.side == "A":
+                self.Af +=1
+            else:
+                self.Bf +=1
+            self.check_wins()
 
     def getSpeed(self, player):
         return player.lead.speed
@@ -107,50 +122,53 @@ class Battle:
             current_leads.append(p.lead)
 
         self.players.sort(key=self.getSpeed, reverse=True)
-        #sorted(self.players, key=lambda poke: poke.lead.speed, reverse=True)
+
         print(self.players)
 
 
     def check_wins(self):
-        a_out = 0
-        b_out = 0
-        for trainer  in self.players:
-             if (trainer.side == 'A' and trainer.out == True): a_out += 1
-             if (trainer.side == 'B' and trainer.out == True): b_out += 1
-        if a_out == len(self.ATeam) and b_out == len(self.BTeam):
-            print("Draw")
-            return [True, '']
-        elif a_out != len(self.ATeam) and b_out == len(self.BTeam):
-            print("Your team wins!")
-            return [True, self.ATeam]
-        elif a_out == len(self.ATeam) and b_out != len(self.BTeam):
-            print("Your team loses!")
-            return [True, self.BTeam]
 
-        else: return [False, '']
+        if  self.Af == self.A_total and self.Bf == self.B_total:
+            print("Draw")
+            self.over = True
+            return 'None'
+        elif self.Af != self.A_total and self.Bf == self.B_total:
+            print("Your team wins!")
+            self.over = True
+            return self.ATeam
+        elif self.Af == self.A_total and self.Bf != self.B_total:
+            print("Your team loses!")
+            self.over = True
+            return self.BTeam
+
+
 
 
     def nextRound(self):
 
         # Check win
 
+        self.round += 1
         print("Round: ", self.round)
         check_order = False
+        if self.over == True:
+            return "Battle over"
 
 
-        self.round += 1
 
         for p in self.players:
             # All trainers plan - may be obselete soon
             # Faster trainer uses move first
-            # p.predictTurn()
-            print(p.name+"'s Turn!")
+
+
+            if p.lead.canBattle == True:
+                print(p.name+"'s Turn!")
 
             # Trainers make their decision
             ### TAKE TURNS HERE ####
 
-            choice = p.nextTurn()
-            if p.lead.canBattle == True:
+                choice = p.nextTurn()
+
                 if choice == "Item":
                     print(p.name + " used an item!")
                     p.useItem()
@@ -176,13 +194,15 @@ class Battle:
 
         # switch if pokemon fainted
         for p in self.players:
-            if p.lead.canBattle == False:
+            if p.lead.canBattle == False and p.out == False:
                 p.switchPkmn()
+                # self.check_wins()
 
 
 
 Sample_Battle = Battle('SINGLE', [Rai, Cynthia])
-print(Rai.lead)
-print(Cynthia.lead)
-Sample_Battle.nextRound()
+# print(Rai.lead)
+# print(Cynthia.lead)
+# Sample_Battle.nextRound()
+# Sample_Battle.nextRound()
 # print(Sample_Battle)

@@ -1,0 +1,3193 @@
+Name,No.,Type,Category,Power,PP,Accuracy,Effect,Notes
+Pound,"1
+",Normal,Physical,"40
+","35
+",1.0,[],[]
+Karate Chop,"2
+",Fighting,Physical,"50
+","25
+",1.0,[],[]
+Double Slap,"3
+",Normal,Physical,"15
+","10
+",0.85,[],[]
+Comet Punch,"4
+",Normal,Physical,"18
+","15
+",0.85,[],[]
+Mega Punch,"5
+",Normal,Physical,"80
+","20
+",0.85,[],[]
+Pay Day,"6
+",Normal,Physical,"40
+","20
+",1.0,[],[]
+Fire Punch,"7
+",Fire,Physical,"75
+","15
+",1.0,[],[]
+Ice Punch,"8
+",Ice,Physical,"75
+","15
+",1.0,[],[]
+Thunder Punch,"9
+",Electric,Physical,"75
+","15
+",1.0,[],[]
+Scratch,"10
+",Normal,Physical,"40
+","35
+",1.0,[],[]
+Vice Grip,"11
+",Normal,Physical,"55
+","30
+",1.0,[],[]
+Guillotine,"12
+",Normal,Physical,"—
+","5
+","—* *
+",[],['Accuracy is ((level of user - level of target) + 30). Cannot hit Pokémon of a higher level.']
+Razor Wind,"13
+",Normal,Special,"80
+","10
+","100%*
+",[],['75% in Generations I-II']
+Swords Dance,"14
+",Normal,Status,"—
+","20*
+","—
+",[],[]
+Cut,"15
+",Normal,Physical,"50
+","30
+",0.95,[],[]
+Gust,"16
+",Flying,Special,"40
+","35
+",1.0,[],[]
+Wing Attack,"17
+",Flying,Physical,"60*
+","35
+",1.0,[],[]
+Whirlwind,"18
+",Normal,Status,"—
+","20
+","—*
+",[],"['85% in Generation I, 100% in Generations II-V']"
+Fly,"19
+",Flying,Physical,"90*
+","15
+",0.95,[],[]
+Bind,"20
+",Normal,Physical,"15
+","20
+","85%*
+",[],['75% in Generations I-IV']
+Slam,"21
+",Normal,Physical,"80
+","20
+",0.75,[],[]
+Vine Whip,"22
+",Grass,Physical,"45*
+","25*
+",1.0,[],[]
+Stomp,"23
+",Normal,Physical,"65
+","20
+",1.0,[],[]
+Double Kick,"24
+",Fighting,Physical,"30
+","30
+",1.0,[],[]
+Mega Kick,"25
+",Normal,Physical,"120
+","5
+",0.75,[],[]
+Jump Kick,"26
+",Fighting,Physical,"100*
+","10*
+",0.95,[],[]
+Rolling Kick,"27
+",Fighting,Physical,"60
+","15
+",0.85,[],[]
+Sand Attack,"28
+",Ground,Status,"—
+","15
+",1.0,[],[]
+Headbutt,"29
+",Normal,Physical,"70
+","15
+",1.0,[],[]
+Horn Attack,"30
+",Normal,Physical,"65
+","25
+",1.0,[],[]
+Fury Attack,"31
+",Normal,Physical,"15
+","20
+",0.85,[],[]
+Horn Drill,"32
+",Normal,Physical,"—
+","5
+","—* *
+",[],['Accuracy is ((level of user - level of target) + 30). Cannot hit Pokémon of a higher level.']
+Tackle,"33
+",Normal,Physical,"40*
+","35
+","100%*
+",[],['95% in Generations I-IV']
+Body Slam,"34
+",Normal,Physical,"85
+","15
+",1.0,[],[]
+Wrap,"35
+",Normal,Physical,"15
+","20
+","90%*
+",[],['85 in Generations I-IV']
+Take Down,"36
+",Normal,Physical,"90
+","20
+",0.85,[],[]
+Thrash,"37
+",Normal,Physical,"120*
+","10*
+",1.0,[],[]
+Double-Edge,"38
+",Normal,Physical,"120*
+","15
+",1.0,[],[]
+Tail Whip,"39
+",Normal,Status,"—
+","30
+",1.0,[],[]
+Poison Sting,"40
+",Poison,Physical,"15
+","35
+",1.0,[],[]
+Twineedle,"41
+",Bug,Physical,"25
+","20
+",1.0,[],[]
+Pin Missile,"42
+",Bug,Physical,"25*
+","20
+","95%*
+",[],['85% in Generations I-V']
+Leer,"43
+",Normal,Status,"—
+","30
+",1.0,[],[]
+Bite,"44
+",Dark,Physical,"60
+","25
+",1.0,[],[]
+Growl,"45
+",Normal,Status,"—
+","40
+",1.0,[],[]
+Roar,"46
+",Normal,Status,"—
+","20
+","—*
+",[],['100% in Generations I-V']
+Sing,"47
+",Normal,Status,"—
+","15
+",0.55,[],[]
+Supersonic,"48
+",Normal,Status,"—
+","20
+",0.55,[],[]
+Sonic Boom,"49
+",Normal,Special,"*
+","20
+",0.9,[],[]
+Disable,"50
+",Normal,Status,"—
+","20
+","100%*
+",[],"['55% in Generations I-III, 80% in Generation IV']"
+Acid,"51
+",Poison,Special,"40
+","30
+",1.0,[],[]
+Ember,"52
+",Fire,Special,"40
+","25
+",1.0,[],[]
+Flamethrower,"53
+",Fire,Special,"90*
+","15
+",1.0,[],[]
+Mist,"54
+",Ice,Status,"—
+","30
+","—
+",[],[]
+Water Gun,"55
+",Water,Special,"40
+","25
+",1.0,[],[]
+Hydro Pump,"56
+",Water,Special,"110*
+","5
+",0.8,[],[]
+Surf,"57
+",Water,Special,"90*
+","15
+",1.0,[],[]
+Ice Beam,"58
+",Ice,Special,"90*
+","10
+",1.0,[],[]
+Blizzard,"59
+",Ice,Special,"110*
+","5
+","70%*
+",[],['89.5% in Generation I']
+Psybeam,"60
+",Psychic,Special,"65
+","20
+",1.0,[],[]
+Bubble Beam,"61
+",Water,Special,"65
+","20
+",1.0,[],[]
+Aurora Beam,"62
+",Ice,Special,"65
+","20
+",1.0,[],[]
+Hyper Beam,"63
+",Normal,Special,"150
+","5
+",0.9,[],[]
+Peck,"64
+",Flying,Physical,"35
+","35
+",1.0,[],[]
+Drill Peck,"65
+",Flying,Physical,"80
+","20
+",1.0,[],[]
+Submission,"66
+",Fighting,Physical,"80
+","20*
+",0.8,[],[]
+Low Kick,"67
+",Fighting,Physical,"—*
+","20
+","100%*
+",[],['90% in Generations I-II']
+Counter,"68
+",Fighting,Physical,"—
+","20
+",1.0,[],[]
+Seismic Toss,"69
+",Fighting,Physical,"—
+","20
+",1.0,[],[]
+Strength,"70
+",Normal,Physical,"80
+","15
+",1.0,[],[]
+Absorb,"71
+",Grass,Special,"20
+","25*
+",1.0,[],[]
+Mega Drain,"72
+",Grass,Special,"40
+","15*
+",1.0,[],[]
+Leech Seed,"73
+",Grass,Status,"—
+","10
+",0.9,[],[]
+Growth,"74
+",Normal,Status,"—
+","20*
+","—
+",[],[]
+Razor Leaf,"75
+",Grass,Physical,"55
+","25
+",0.95,[],[]
+Solar Beam,"76
+",Grass,Special,"120
+","10
+",1.0,[],[]
+Poison Powder,"77
+",Poison,Status,"—
+","35
+",0.75,[],[]
+Stun Spore,"78
+",Grass,Status,"—
+","30
+",0.75,[],[]
+Sleep Powder,"79
+",Grass,Status,"—
+","15
+",0.75,[],[]
+Petal Dance,"80
+",Grass,Special,"120*
+","10*
+",1.0,[],[]
+String Shot,"81
+",Bug,Status,"—
+","40
+",0.95,[],[]
+Dragon Rage,"82
+",Dragon,Special,"*
+","10
+",1.0,[],[]
+Fire Spin,"83
+",Fire,Special,"35*
+","15
+","85%*
+",[],['70% in Generations I-IV']
+Thunder Shock,"84
+",Electric,Special,"40
+","30
+",1.0,[],[]
+Thunderbolt,"85
+",Electric,Special,"90*
+","15
+",1.0,[],[]
+Thunder Wave,"86
+",Electric,Status,"—
+","20
+","90%*
+",[],['100% in Generations I-VI']
+Thunder,"87
+",Electric,Special,"110*
+","10
+",0.7,[],[]
+Rock Throw,"88
+",Rock,Physical,"50
+","15
+","90%*
+",[],['65% in Generation I']
+Earthquake,"89
+",Ground,Physical,"100
+","10
+",1.0,[],[]
+Fissure,"90
+",Ground,Physical,"—
+","5
+","—* *
+",[],['Accuracy is ((level of user - level of target) + 30). Cannot hit Pokémon of a higher level.']
+Dig,"91
+",Ground,Physical,"80*
+","10
+",1.0,[],[]
+Toxic,"92
+",Poison,Status,"—
+","10
+","90%*
+",[],['85% in Generations I-IV']
+Confusion,"93
+",Psychic,Special,"50
+","25
+",1.0,[],[]
+Psychic,"94
+",Psychic,Special,"90
+","10
+",1.0,[],[]
+Hypnosis,"95
+",Psychic,Status,"—
+","20
+","60%*
+",[],['70% in Diamond and Pearl']
+Meditate,"96
+",Psychic,Status,"—
+","40
+","—
+",[],[]
+Agility,"97
+",Psychic,Status,"—
+","30
+","—
+",[],[]
+Quick Attack,"98
+",Normal,Physical,"40
+","30
+",1.0,[],[]
+Rage,"99
+",Normal,Physical,"20
+","20
+",1.0,[],[]
+Teleport,"100
+",Psychic,Status,"—
+","20
+","—
+",[],[]
+Night Shade,"101
+",Ghost,Special,"—
+","15
+",1.0,[],[]
+Mimic,"102
+",Normal,Status,"—
+","10
+","—*
+",[],['100% in Generations I-II']
+Screech,"103
+",Normal,Status,"—
+","40
+",0.85,[],[]
+Double Team,"104
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Recover,"105
+",Normal,Status,"—
+","10*
+","—
+",[],[]
+Harden,"106
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Minimize,"107
+",Normal,Status,"—
+","10*
+","—
+",[],[]
+Smokescreen,"108
+",Normal,Status,"—
+","20
+",1.0,[],[]
+Confuse Ray,"109
+",Ghost,Status,"—
+","10
+",1.0,[],[]
+Withdraw,"110
+",Water,Status,"—
+","40
+","—
+",[],[]
+Defense Curl,"111
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Barrier,"112
+",Psychic,Status,"—
+","20*
+","—
+",[],[]
+Light Screen,"113
+",Psychic,Status,"—
+","30
+","—
+",[],[]
+Haze,"114
+",Ice,Status,"—
+","30
+","—
+",[],[]
+Reflect,"115
+",Psychic,Status,"—
+","20
+","—
+",[],[]
+Focus Energy,"116
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Bide,"117
+",Normal,Physical,"—
+","10
+","—*
+",[],['100% in Generations I-III']
+Metronome,"118
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Mirror Move,"119
+",Flying,Status,"—
+","20
+","—
+",[],[]
+Self-Destruct,"120
+",Normal,Physical,"200*
+","5
+",1.0,[],[]
+Egg Bomb,"121
+",Normal,Physical,"100
+","10
+",0.75,[],[]
+Lick,"122
+",Ghost,Physical,"30*
+","30
+",1.0,[],[]
+Smog,"123
+",Poison,Special,"30*
+","20
+",0.7,[],[]
+Sludge,"124
+",Poison,Special,"65
+","20
+",1.0,[],[]
+Bone Club,"125
+",Ground,Physical,"65
+","20
+",0.85,[],[]
+Fire Blast,"126
+",Fire,Special,"110*
+","5
+",0.85,[],[]
+Waterfall,"127
+",Water,Physical,"80
+","15
+",1.0,[],[]
+Clamp,"128
+",Water,Physical,"35
+","15*
+","85%*
+",[],['75% in Generations I-IV']
+Swift,"129
+",Normal,Special,"60
+","20
+","—
+",[],[]
+Skull Bash,"130
+",Normal,Physical,"130*
+","10*
+",1.0,[],[]
+Spike Cannon,"131
+",Normal,Physical,"20
+","15
+",1.0,[],[]
+Constrict,"132
+",Normal,Physical,"10
+","35
+",1.0,[],[]
+Amnesia,"133
+",Psychic,Status,"—
+","20
+","—
+",[],[]
+Kinesis,"134
+",Psychic,Status,"—
+","15
+",0.8,[],[]
+Soft-Boiled,"135
+",Normal,Status,"—
+","10
+","—
+",[],[]
+High Jump Kick,"136
+",Fighting,Physical,"130*
+","10*
+",0.9,[],[]
+Glare,"137
+",Normal,Status,"—
+","30
+","100%*
+",[],"['75% in Generations I-IV, 90% in Generation V']"
+Dream Eater,"138
+",Psychic,Special,"100
+","15
+",1.0,[],[]
+Poison Gas,"139
+",Poison,Status,"—
+","40
+","90%*
+",[],"['55% in Generations I-IV, 80% in Generation V']"
+Barrage,"140
+",Normal,Physical,"15
+","20
+",0.85,[],[]
+Leech Life,"141
+",Bug,Physical,"80*
+","10*
+",1.0,[],[]
+Lovely Kiss,"142
+",Normal,Status,"—
+","10
+",0.75,[],[]
+Sky Attack,"143
+",Flying,Physical,"140
+","5
+",0.9,[],[]
+Transform,"144
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Bubble,"145
+",Water,Special,"40*
+","30
+",1.0,[],[]
+Dizzy Punch,"146
+",Normal,Physical,"70
+","10
+",1.0,[],[]
+Spore,"147
+",Grass,Status,"—
+","15
+",1.0,[],[]
+Flash,"148
+",Normal,Status,"—
+","20
+","100%*
+",[],['70% in Generations I-III']
+Psywave,"149
+",Psychic,Special,"—
+","15
+","100%*
+",[],['80% in Generations I-V']
+Splash,"150
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Acid Armor,"151
+",Poison,Status,"—
+","20*
+","—
+",[],[]
+Crabhammer,"152
+",Water,Physical,"100*
+","10
+","90%*
+",[],['85% in Generations I-IV']
+Explosion,"153
+",Normal,Physical,"250*
+","5
+",1.0,[],[]
+Fury Swipes,"154
+",Normal,Physical,"18
+","15
+",0.8,[],[]
+Bonemerang,"155
+",Ground,Physical,"50
+","10
+",0.9,[],[]
+Rest,"156
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Rock Slide,"157
+",Rock,Physical,"75
+","10
+",0.9,[],[]
+Hyper Fang,"158
+",Normal,Physical,"80
+","15
+",0.9,[],[]
+Sharpen,"159
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Conversion,"160
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Tri Attack,"161
+",Normal,Special,"80
+","10
+",1.0,[],[]
+Super Fang,"162
+",Normal,Physical,"—
+","10
+",0.9,[],[]
+Slash,"163
+",Normal,Physical,"70
+","20
+",1.0,[],[]
+Substitute,"164
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Struggle,"165
+",Normal,Physical,"50
+","1*
+","—*
+",[],['100% in Generations I-III']
+Sketch,"166
+",Normal,Status,"—
+","1
+","—
+",[],[]
+Triple Kick,"167
+",Fighting,Physical,"10
+","10
+",0.9,[],[]
+Thief,"168
+",Dark,Physical,"60*
+","25*
+",1.0,[],[]
+Spider Web,"169
+",Bug,Status,"—
+","10
+","—
+",[],[]
+Mind Reader,"170
+",Normal,Status,"—
+","5
+","—*
+",[],['100% in Generations II-III']
+Nightmare,"171
+",Ghost,Status,"—
+","15
+",1.0,[],[]
+Flame Wheel,"172
+",Fire,Physical,"60
+","25
+",1.0,[],[]
+Snore,"173
+",Normal,Special,"50*
+","15
+",1.0,[],[]
+Curse,"174
+",Ghost,Status,"—
+","10
+","—
+",[],[]
+Flail,"175
+",Normal,Physical,"—
+","15
+",1.0,[],[]
+Conversion 2,"176
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Aeroblast,"177
+",Flying,Special,"100
+","5
+",0.95,[],[]
+Cotton Spore,"178
+",Grass,Status,"—
+","40
+","100%*
+",[],['85% in Generations II-IV']
+Reversal,"179
+",Fighting,Physical,"—
+","15
+",1.0,[],[]
+Spite,"180
+",Ghost,Status,"—
+","10
+",1.0,[],[]
+Powder Snow,"181
+",Ice,Special,"40
+","25
+",1.0,[],[]
+Protect,"182
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Mach Punch,"183
+",Fighting,Physical,"40
+","30
+",1.0,[],[]
+Scary Face,"184
+",Normal,Status,"—
+","10
+","100%*
+",[],['90% in Generations II-IV']
+Feint Attack,"185
+",Dark,Physical,"60
+","20
+","—
+",[],[]
+Sweet Kiss,"186
+",Fairy,Status,"—
+","10
+",0.75,[],[]
+Belly Drum,"187
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Sludge Bomb,"188
+",Poison,Special,"90
+","10
+",1.0,[],[]
+Mud-Slap,"189
+",Ground,Special,"20
+","10
+",1.0,[],[]
+Octazooka,"190
+",Water,Special,"65
+","10
+",0.85,[],[]
+Spikes,"191
+",Ground,Status,"—
+","20
+","—
+",[],[]
+Zap Cannon,"192
+",Electric,Special,"120*
+","5
+",0.5,[],[]
+Foresight,"193
+",Normal,Status,"—
+","40
+","—*
+",[],['100% in Generations II-III']
+Destiny Bond,"194
+",Ghost,Status,"—
+","5
+","—
+",[],[]
+Perish Song,"195
+",Normal,Status,"—
+","5
+","—
+",[],[]
+Icy Wind,"196
+",Ice,Special,"55
+","15
+",0.95,[],[]
+Detect,"197
+",Fighting,Status,"—
+","5
+","—
+",[],[]
+Bone Rush,"198
+",Ground,Physical,"25
+","10
+","90%*
+",[],['80% in Generations II-IV']
+Lock-On,"199
+",Normal,Status,"—
+","5
+","—*
+",[],['100% in Generations II-III']
+Outrage,"200
+",Dragon,Physical,"120*
+","10*
+",1.0,[],[]
+Sandstorm,"201
+",Rock,Status,"—
+","10
+","—
+",[],[]
+Giga Drain,"202
+",Grass,Special,"75*
+","10*
+",1.0,[],[]
+Endure,"203
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Charm,"204
+",Fairy,Status,"—
+","20
+",1.0,[],[]
+Rollout,"205
+",Rock,Physical,"30
+","20
+",0.9,[],[]
+False Swipe,"206
+",Normal,Physical,"40
+","40
+",1.0,[],[]
+Swagger,"207
+",Normal,Status,"—
+","15
+","85%*
+",[],['90% in Generations II-VI']
+Milk Drink,"208
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Spark,"209
+",Electric,Physical,"65
+","20
+",1.0,[],[]
+Fury Cutter,"210
+",Bug,Physical,"40*
+","20
+",0.95,[],[]
+Steel Wing,"211
+",Steel,Physical,"70
+","25
+",0.9,[],[]
+Mean Look,"212
+",Normal,Status,"—
+","5
+","—
+",[],[]
+Attract,"213
+",Normal,Status,"—
+","15
+",1.0,[],[]
+Sleep Talk,"214
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Heal Bell,"215
+",Normal,Status,"—
+","5
+","—
+",[],[]
+Return,"216
+",Normal,Physical,"—
+","20
+",1.0,[],[]
+Present,"217
+",Normal,Physical,"—
+","15
+",0.9,[],[]
+Frustration,"218
+",Normal,Physical,"—
+","20
+",1.0,[],[]
+Safeguard,"219
+",Normal,Status,"—
+","25
+","—
+",[],[]
+Pain Split,"220
+",Normal,Status,"—
+","20
+","—*
+",[],['100% in Generation II']
+Sacred Fire,"221
+",Fire,Physical,"100
+","5
+",0.95,[],[]
+Magnitude,"222
+",Ground,Physical,"—
+","30
+",1.0,[],[]
+Dynamic Punch,"223
+",Fighting,Physical,"100
+","5
+",0.5,[],[]
+Megahorn,"224
+",Bug,Physical,"120
+","10
+",0.85,[],[]
+Dragon Breath,"225
+",Dragon,Special,"60
+","20
+",1.0,[],[]
+Baton Pass,"226
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Encore,"227
+",Normal,Status,"—
+","5
+",1.0,[],[]
+Pursuit,"228
+",Dark,Physical,"40
+","20
+",1.0,[],[]
+Rapid Spin,"229
+",Normal,Physical,"20
+","40
+",1.0,[],[]
+Sweet Scent,"230
+",Normal,Status,"—
+","20
+",1.0,[],[]
+Iron Tail,"231
+",Steel,Physical,"100
+","15
+",0.75,[],[]
+Metal Claw,"232
+",Steel,Physical,"50
+","35
+",0.95,[],[]
+Vital Throw,"233
+",Fighting,Physical,"70
+","10
+","—
+",[],[]
+Morning Sun,"234
+",Normal,Status,"—
+","5
+","—
+",[],[]
+Synthesis,"235
+",Grass,Status,"—
+","5
+","—
+",[],[]
+Moonlight,"236
+",Fairy,Status,"—
+","5
+","—
+",[],[]
+Hidden Power,"237
+",Normal,Special,"60*
+","15
+",1.0,[],[]
+Cross Chop,"238
+",Fighting,Physical,"100
+","5
+",0.8,[],[]
+Twister,"239
+",Dragon,Special,"40
+","20
+",1.0,[],[]
+Rain Dance,"240
+",Water,Status,"—
+","5
+","—
+",[],[]
+Sunny Day,"241
+",Fire,Status,"—
+","5
+","—
+",[],[]
+Crunch,"242
+",Dark,Physical,"80
+","15
+",1.0,[],[]
+Mirror Coat,"243
+",Psychic,Special,"—
+","20
+",1.0,[],[]
+Psych Up,"244
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Extreme Speed,"245
+",Normal,Physical,"80
+","5
+",1.0,[],[]
+Ancient Power,"246
+",Rock,Special,"60
+","5
+",1.0,[],[]
+Shadow Ball,"247
+",Ghost,Special,"80
+","15
+",1.0,[],[]
+Future Sight,"248
+",Psychic,Special,"120*
+","10*
+","100%*
+",[],['90% in Generations II-IV']
+Rock Smash,"249
+",Fighting,Physical,"40*
+","15
+",1.0,[],[]
+Whirlpool,"250
+",Water,Special,"35*
+","15
+","85%*
+",[],['70% in Generations II-IV']
+Beat Up,"251
+",Dark,Physical,"—*
+","10
+",1.0,[],[]
+Fake Out,"252
+",Normal,Physical,"40
+","10
+",1.0,[],[]
+Uproar,"253
+",Normal,Special,"90*
+","10
+",1.0,[],[]
+Stockpile,"254
+",Normal,Status,"—
+","20*
+","—
+",[],[]
+Spit Up,"255
+",Normal,Special,"—
+","10
+",1.0,[],[]
+Swallow,"256
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Heat Wave,"257
+",Fire,Special,"95*
+","10
+",0.9,[],[]
+Hail,"258
+",Ice,Status,"—
+","10
+","—
+",[],[]
+Torment,"259
+",Dark,Status,"—
+","15
+",1.0,[],[]
+Flatter,"260
+",Dark,Status,"—
+","15
+",1.0,[],[]
+Will-O-Wisp,"261
+",Fire,Status,"—
+","15
+","85%*
+",[],['75% in Generations III-V']
+Memento,"262
+",Dark,Status,"—
+","10
+",1.0,[],[]
+Facade,"263
+",Normal,Physical,"70
+","20
+",1.0,[],[]
+Focus Punch,"264
+",Fighting,Physical,"150
+","20
+",1.0,[],[]
+Smelling Salts,"265
+",Normal,Physical,"70*
+","10
+",1.0,[],[]
+Follow Me,"266
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Nature Power,"267
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Charge,"268
+",Electric,Status,"—
+","20
+","—
+",[],[]
+Taunt,"269
+",Dark,Status,"—
+","20
+",1.0,[],[]
+Helping Hand,"270
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Trick,"271
+",Psychic,Status,"—
+","10
+",1.0,[],[]
+Role Play,"272
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Wish,"273
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Assist,"274
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Ingrain,"275
+",Grass,Status,"—
+","20
+","—
+",[],[]
+Superpower,"276
+",Fighting,Physical,"120
+","5
+",1.0,[],[]
+Magic Coat,"277
+",Psychic,Status,"—
+","15
+","—
+",[],[]
+Recycle,"278
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Revenge,"279
+",Fighting,Physical,"60
+","10
+",1.0,[],[]
+Brick Break,"280
+",Fighting,Physical,"75
+","15
+",1.0,[],[]
+Yawn,"281
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Knock Off,"282
+",Dark,Physical,"65*
+","20
+",1.0,[],[]
+Endeavor,"283
+",Normal,Physical,"—
+","5
+",1.0,[],[]
+Eruption,"284
+",Fire,Special,"150
+","5
+",1.0,[],[]
+Skill Swap,"285
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Imprison,"286
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Refresh,"287
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Grudge,"288
+",Ghost,Status,"—
+","5
+","—
+",[],[]
+Snatch,"289
+",Dark,Status,"—
+","10
+","—
+",[],[]
+Secret Power,"290
+",Normal,Physical,"70
+","20
+",1.0,[],[]
+Dive,"291
+",Water,Physical,"80
+","10
+",1.0,[],[]
+Arm Thrust,"292
+",Fighting,Physical,"15
+","20
+",1.0,[],[]
+Camouflage,"293
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Tail Glow,"294
+",Bug,Status,"—
+","20
+","—
+",[],[]
+Luster Purge,"295
+",Psychic,Special,"70
+","5
+",1.0,[],[]
+Mist Ball,"296
+",Psychic,Special,"70
+","5
+",1.0,[],[]
+Feather Dance,"297
+",Flying,Status,"—
+","15
+",1.0,[],[]
+Teeter Dance,"298
+",Normal,Status,"—
+","20
+",1.0,[],[]
+Blaze Kick,"299
+",Fire,Physical,"85
+","10
+",0.9,[],[]
+Mud Sport,"300
+",Ground,Status,"—
+","15
+","—
+",[],[]
+Ice Ball,"301
+",Ice,Physical,"30
+","20
+",0.9,[],[]
+Needle Arm,"302
+",Grass,Physical,"60
+","15
+",1.0,[],[]
+Slack Off,"303
+",Normal,Status,"—
+","10
+","—
+",[],[]
+Hyper Voice,"304
+",Normal,Special,"90
+","10
+",1.0,[],[]
+Poison Fang,"305
+",Poison,Physical,"50
+","15
+",1.0,[],[]
+Crush Claw,"306
+",Normal,Physical,"75
+","10
+",0.95,[],[]
+Blast Burn,"307
+",Fire,Special,"150
+","5
+",0.9,[],[]
+Hydro Cannon,"308
+",Water,Special,"150
+","5
+",0.9,[],[]
+Meteor Mash,"309
+",Steel,Physical,"90*
+","10
+","90%*
+",[],['85% in Generations III-V']
+Astonish,"310
+",Ghost,Physical,"30
+","15
+",1.0,[],[]
+Weather Ball,"311
+",Normal,Special,"50
+","10
+",1.0,[],[]
+Aromatherapy,"312
+",Grass,Status,"—
+","5
+","—
+",[],[]
+Fake Tears,"313
+",Dark,Status,"—
+","20
+",1.0,[],[]
+Air Cutter,"314
+",Flying,Special,"60*
+","25
+",0.95,[],[]
+Overheat,"315
+",Fire,Special,"130*
+","5
+",0.9,[],[]
+Odor Sleuth,"316
+",Normal,Status,"—
+","40
+","—*
+",[],['100% in Generation III']
+Rock Tomb,"317
+",Rock,Physical,"60*
+","15*
+","95%*
+",[],['80% in Generations III-V']
+Silver Wind,"318
+",Bug,Special,"60
+","5
+",1.0,[],[]
+Metal Sound,"319
+",Steel,Status,"—
+","40
+",0.85,[],[]
+Grass Whistle,"320
+",Grass,Status,"—
+","15
+",0.55,[],[]
+Tickle,"321
+",Normal,Status,"—
+","20
+",1.0,[],[]
+Cosmic Power,"322
+",Psychic,Status,"—
+","20
+","—
+",[],[]
+Water Spout,"323
+",Water,Special,"150
+","5
+",1.0,[],[]
+Signal Beam,"324
+",Bug,Special,"75
+","15
+",1.0,[],[]
+Shadow Punch,"325
+",Ghost,Physical,"60
+","20
+","—
+",[],[]
+Extrasensory,"326
+",Psychic,Special,"80
+","20*
+",1.0,[],[]
+Sky Uppercut,"327
+",Fighting,Physical,"85
+","15
+",0.9,[],[]
+Sand Tomb,"328
+",Ground,Physical,"35*
+","15
+","85%*
+",[],['70 in Generations III-IV']
+Sheer Cold,"329
+",Ice,Special,"—
+","5
+","—*
+",[],['Accuracy is ((level of user - level of target) + 30). Cannot hit Pokémon of a higher level.']
+Muddy Water,"330
+",Water,Special,"90*
+","10
+",0.85,[],[]
+Bullet Seed,"331
+",Grass,Physical,"25*
+","30
+",1.0,[],[]
+Aerial Ace,"332
+",Flying,Physical,"60
+","20
+","—
+",[],[]
+Icicle Spear,"333
+",Ice,Physical,"25*
+","30
+",1.0,[],[]
+Iron Defense,"334
+",Steel,Status,"—
+","15
+","—
+",[],[]
+Block,"335
+",Normal,Status,"—
+","5
+","—
+",[],[]
+Howl,"336
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Dragon Claw,"337
+",Dragon,Physical,"80
+","15
+",1.0,[],[]
+Frenzy Plant,"338
+",Grass,Special,"150
+","5
+",0.9,[],[]
+Bulk Up,"339
+",Fighting,Status,"—
+","20
+","—
+",[],[]
+Bounce,"340
+",Flying,Physical,"85
+","5
+",0.85,[],[]
+Mud Shot,"341
+",Ground,Special,"55
+","15
+",0.95,[],[]
+Poison Tail,"342
+",Poison,Physical,"50
+","25
+",1.0,[],[]
+Covet,"343
+",Normal,Physical,"60*
+","25*
+",1.0,[],[]
+Volt Tackle,"344
+",Electric,Physical,"120
+","15
+",1.0,[],[]
+Magical Leaf,"345
+",Grass,Special,"60
+","20
+","—
+",[],[]
+Water Sport,"346
+",Water,Status,"—
+","15
+","—
+",[],[]
+Calm Mind,"347
+",Psychic,Status,"—
+","20
+","—
+",[],[]
+Leaf Blade,"348
+",Grass,Physical,"90*
+","15
+",1.0,[],[]
+Dragon Dance,"349
+",Dragon,Status,"—
+","20
+","—
+",[],[]
+Rock Blast,"350
+",Rock,Physical,"25
+","10
+","90%*
+",[],['80% in Generations III-IV']
+Shock Wave,"351
+",Electric,Special,"60
+","20
+","—
+",[],[]
+Water Pulse,"352
+",Water,Special,"60
+","20
+",1.0,[],[]
+Doom Desire,"353
+",Steel,Special,"140*
+","5
+","100%*
+",[],['85% in Generations III-IV']
+Psycho Boost,"354
+",Psychic,Special,"140
+","5
+",0.9,[],[]
+Roost,"355
+",Flying,Status,"—
+","10
+","—
+",[],[]
+Gravity,"356
+",Psychic,Status,"—
+","5
+","—
+",[],[]
+Miracle Eye,"357
+",Psychic,Status,"—
+","40
+","—
+",[],[]
+Wake-Up Slap,"358
+",Fighting,Physical,"70*
+","10
+",1.0,[],[]
+Hammer Arm,"359
+",Fighting,Physical,"100
+","10
+",0.9,[],[]
+Gyro Ball,"360
+",Steel,Physical,"—
+","5
+",1.0,[],[]
+Healing Wish,"361
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Brine,"362
+",Water,Special,"65
+","10
+",1.0,[],[]
+Natural Gift,"363
+",Normal,Physical,"—
+","15
+",1.0,[],[]
+Feint,"364
+",Normal,Physical,"30*
+","10
+",1.0,[],[]
+Pluck,"365
+",Flying,Physical,"60
+","20
+",1.0,[],[]
+Tailwind,"366
+",Flying,Status,"—
+","15*
+","—
+",[],[]
+Acupressure,"367
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Metal Burst,"368
+",Steel,Physical,"—
+","10
+",1.0,[],[]
+U-turn,"369
+",Bug,Physical,"70
+","20
+",1.0,[],[]
+Close Combat,"370
+",Fighting,Physical,"120
+","5
+",1.0,[],[]
+Payback,"371
+",Dark,Physical,"50
+","10
+",1.0,[],[]
+Assurance,"372
+",Dark,Physical,"60*
+","10
+",1.0,[],[]
+Embargo,"373
+",Dark,Status,"—
+","15
+",1.0,[],[]
+Fling,"374
+",Dark,Physical,"—
+","10
+",1.0,[],[]
+Psycho Shift,"375
+",Psychic,Status,"—
+","10
+","100%*
+",[],['90% in Generations IV-V']
+Trump Card,"376
+",Normal,Special,"—
+","5
+","—
+",[],[]
+Heal Block,"377
+",Psychic,Status,"—
+","15
+",1.0,[],[]
+Wring Out,"378
+",Normal,Special,"—
+","5
+",1.0,[],[]
+Power Trick,"379
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Gastro Acid,"380
+",Poison,Status,"—
+","10
+",1.0,[],[]
+Lucky Chant,"381
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Me First,"382
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Copycat,"383
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Power Swap,"384
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Guard Swap,"385
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Punishment,"386
+",Dark,Physical,"—
+","5
+",1.0,[],[]
+Last Resort,"387
+",Normal,Physical,"140*
+","5
+",1.0,[],[]
+Worry Seed,"388
+",Grass,Status,"—
+","10
+",1.0,[],[]
+Sucker Punch,"389
+",Dark,Physical,"70*
+","5
+",1.0,[],[]
+Toxic Spikes,"390
+",Poison,Status,"—
+","20
+","—
+",[],[]
+Heart Swap,"391
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Aqua Ring,"392
+",Water,Status,"—
+","20
+","—
+",[],[]
+Magnet Rise,"393
+",Electric,Status,"—
+","10
+","—
+",[],[]
+Flare Blitz,"394
+",Fire,Physical,"120
+","15
+",1.0,[],[]
+Force Palm,"395
+",Fighting,Physical,"60
+","10
+",1.0,[],[]
+Aura Sphere,"396
+",Fighting,Special,"80*
+","20
+","—
+",[],[]
+Rock Polish,"397
+",Rock,Status,"—
+","20
+","—
+",[],[]
+Poison Jab,"398
+",Poison,Physical,"80
+","20
+",1.0,[],[]
+Dark Pulse,"399
+",Dark,Special,"80
+","15
+",1.0,[],[]
+Night Slash,"400
+",Dark,Physical,"70
+","15
+",1.0,[],[]
+Aqua Tail,"401
+",Water,Physical,"90
+","10
+",0.9,[],[]
+Seed Bomb,"402
+",Grass,Physical,"80
+","15
+",1.0,[],[]
+Air Slash,"403
+",Flying,Special,"75
+","15*
+",0.95,[],[]
+X-Scissor,"404
+",Bug,Physical,"80
+","15
+",1.0,[],[]
+Bug Buzz,"405
+",Bug,Special,"90
+","10
+",1.0,[],[]
+Dragon Pulse,"406
+",Dragon,Special,"85*
+","10
+",1.0,[],[]
+Dragon Rush,"407
+",Dragon,Physical,"100
+","10
+",0.75,[],[]
+Power Gem,"408
+",Rock,Special,"80*
+","20
+",1.0,[],[]
+Drain Punch,"409
+",Fighting,Physical,"75*
+","10*
+",1.0,[],[]
+Vacuum Wave,"410
+",Fighting,Special,"40
+","30
+",1.0,[],[]
+Focus Blast,"411
+",Fighting,Special,"120
+","5
+",0.7,[],[]
+Energy Ball,"412
+",Grass,Special,"90*
+","10
+",1.0,[],[]
+Brave Bird,"413
+",Flying,Physical,"120
+","15
+",1.0,[],[]
+Earth Power,"414
+",Ground,Special,"90
+","10
+",1.0,[],[]
+Switcheroo,"415
+",Dark,Status,"—
+","10
+",1.0,[],[]
+Giga Impact,"416
+",Normal,Physical,"150
+","5
+",0.9,[],[]
+Nasty Plot,"417
+",Dark,Status,"—
+","20
+","—
+",[],[]
+Bullet Punch,"418
+",Steel,Physical,"40
+","30
+",1.0,[],[]
+Avalanche,"419
+",Ice,Physical,"60
+","10
+",1.0,[],[]
+Ice Shard,"420
+",Ice,Physical,"40
+","30
+",1.0,[],[]
+Shadow Claw,"421
+",Ghost,Physical,"70
+","15
+",1.0,[],[]
+Thunder Fang,"422
+",Electric,Physical,"65
+","15
+",0.95,[],[]
+Ice Fang,"423
+",Ice,Physical,"65
+","15
+",0.95,[],[]
+Fire Fang,"424
+",Fire,Physical,"65
+","15
+",0.95,[],[]
+Shadow Sneak,"425
+",Ghost,Physical,"40
+","30
+",1.0,[],[]
+Mud Bomb,"426
+",Ground,Special,"65
+","10
+",0.85,[],[]
+Psycho Cut,"427
+",Psychic,Physical,"70
+","20
+",1.0,[],[]
+Zen Headbutt,"428
+",Psychic,Physical,"80
+","15
+",0.9,[],[]
+Mirror Shot,"429
+",Steel,Special,"65
+","10
+",0.85,[],[]
+Flash Cannon,"430
+",Steel,Special,"80
+","10
+",1.0,[],[]
+Rock Climb,"431
+",Normal,Physical,"90
+","20
+",0.85,[],[]
+Defog,"432
+",Flying,Status,"—
+","15
+","—
+",[],[]
+Trick Room,"433
+",Psychic,Status,"—
+","5
+","—
+",[],[]
+Draco Meteor,"434
+",Dragon,Special,"130*
+","5
+",0.9,[],[]
+Discharge,"435
+",Electric,Special,"80
+","15
+",1.0,[],[]
+Lava Plume,"436
+",Fire,Special,"80
+","15
+",1.0,[],[]
+Leaf Storm,"437
+",Grass,Special,"130*
+","5
+",0.9,[],[]
+Power Whip,"438
+",Grass,Physical,"120
+","10
+",0.85,[],[]
+Rock Wrecker,"439
+",Rock,Physical,"150
+","5
+",0.9,[],[]
+Cross Poison,"440
+",Poison,Physical,"70
+","20
+",1.0,[],[]
+Gunk Shot,"441
+",Poison,Physical,"120
+","5
+","80%*
+",[],['70% in Generations IV-V']
+Iron Head,"442
+",Steel,Physical,"80
+","15
+",1.0,[],[]
+Magnet Bomb,"443
+",Steel,Physical,"60
+","20
+","—
+",[],[]
+Stone Edge,"444
+",Rock,Physical,"100
+","5
+",0.8,[],[]
+Captivate,"445
+",Normal,Status,"—
+","20
+",1.0,[],[]
+Stealth Rock,"446
+",Rock,Status,"—
+","20
+","—
+",[],[]
+Grass Knot,"447
+",Grass,Special,"—
+","20
+",1.0,[],[]
+Chatter,"448
+",Flying,Special,"65*
+","20
+",1.0,[],[]
+Judgment,"449
+",Normal,Special,"100
+","10
+",1.0,[],[]
+Bug Bite,"450
+",Bug,Physical,"60
+","20
+",1.0,[],[]
+Charge Beam,"451
+",Electric,Special,"50
+","10
+",0.9,[],[]
+Wood Hammer,"452
+",Grass,Physical,"120
+","15
+",1.0,[],[]
+Aqua Jet,"453
+",Water,Physical,"40
+","20
+",1.0,[],[]
+Attack Order,"454
+",Bug,Physical,"90
+","15
+",1.0,[],[]
+Defend Order,"455
+",Bug,Status,"—
+","10
+","—
+",[],[]
+Heal Order,"456
+",Bug,Status,"—
+","10
+","—
+",[],[]
+Head Smash,"457
+",Rock,Physical,"150
+","5
+",0.8,[],[]
+Double Hit,"458
+",Normal,Physical,"35
+","10
+",0.9,[],[]
+Roar of Time,"459
+",Dragon,Special,"150
+","5
+",0.9,[],[]
+Spacial Rend,"460
+",Dragon,Special,"100
+","5
+",0.95,[],[]
+Lunar Dance,"461
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Crush Grip,"462
+",Normal,Physical,"—
+","5
+",1.0,[],[]
+Magma Storm,"463
+",Fire,Special,"100*
+","5
+","75%*
+",[],['70% in Generation IV']
+Dark Void,"464
+",Dark,Status,"—
+","10
+","50%*
+",[],['80% in Generations IV-VI']
+Seed Flare,"465
+",Grass,Special,"120
+","5
+",0.85,[],[]
+Ominous Wind,"466
+",Ghost,Special,"60
+","5
+",1.0,[],[]
+Shadow Force,"467
+",Ghost,Physical,"120
+","5
+",1.0,[],[]
+Hone Claws,"468
+",Dark,Status,"—
+","15
+","—
+",[],[]
+Wide Guard,"469
+",Rock,Status,"—
+","10
+","—
+",[],[]
+Guard Split,"470
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Power Split,"471
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Wonder Room,"472
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Psyshock,"473
+",Psychic,Special,"80
+","10
+",1.0,[],[]
+Venoshock,"474
+",Poison,Special,"65
+","10
+",1.0,[],[]
+Autotomize,"475
+",Steel,Status,"—
+","15
+","—
+",[],[]
+Rage Powder,"476
+",Bug,Status,"—
+","20
+","—
+",[],[]
+Telekinesis,"477
+",Psychic,Status,"—
+","15
+","—
+",[],[]
+Magic Room,"478
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Smack Down,"479
+",Rock,Physical,"50
+","15
+",1.0,[],[]
+Storm Throw,"480
+",Fighting,Physical,"60*
+","10
+",1.0,[],[]
+Flame Burst,"481
+",Fire,Special,"70
+","15
+",1.0,[],[]
+Sludge Wave,"482
+",Poison,Special,"95
+","10
+",1.0,[],[]
+Quiver Dance,"483
+",Bug,Status,"—
+","20
+","—
+",[],[]
+Heavy Slam,"484
+",Steel,Physical,"—
+","10
+",1.0,[],[]
+Synchronoise,"485
+",Psychic,Special,"120*
+","10*
+",1.0,[],[]
+Electro Ball,"486
+",Electric,Special,"—
+","10
+",1.0,[],[]
+Soak,"487
+",Water,Status,"—
+","20
+",1.0,[],[]
+Flame Charge,"488
+",Fire,Physical,"50
+","20
+",1.0,[],[]
+Coil,"489
+",Poison,Status,"—
+","20
+","—
+",[],[]
+Low Sweep,"490
+",Fighting,Physical,"65*
+","20
+",1.0,[],[]
+Acid Spray,"491
+",Poison,Special,"40
+","20
+",1.0,[],[]
+Foul Play,"492
+",Dark,Physical,"95
+","15
+",1.0,[],[]
+Simple Beam,"493
+",Normal,Status,"—
+","15
+",1.0,[],[]
+Entrainment,"494
+",Normal,Status,"—
+","15
+",1.0,[],[]
+After You,"495
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Round,"496
+",Normal,Special,"60
+","15
+",1.0,[],[]
+Echoed Voice,"497
+",Normal,Special,"40
+","15
+",1.0,[],[]
+Chip Away,"498
+",Normal,Physical,"70
+","20
+",1.0,[],[]
+Clear Smog,"499
+",Poison,Special,"50
+","15
+","—
+",[],[]
+Stored Power,"500
+",Psychic,Special,"20
+","10
+",1.0,[],[]
+Quick Guard,"501
+",Fighting,Status,"—
+","15
+","—
+",[],[]
+Ally Switch,"502
+",Psychic,Status,"—
+","15
+","—
+",[],[]
+Scald,"503
+",Water,Special,"80
+","15
+",1.0,[],[]
+Shell Smash,"504
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Heal Pulse,"505
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Hex,"506
+",Ghost,Special,"65*
+","10
+",1.0,[],[]
+Sky Drop,"507
+",Flying,Physical,"60
+","10
+",1.0,[],[]
+Shift Gear,"508
+",Steel,Status,"—
+","10
+","—
+",[],[]
+Circle Throw,"509
+",Fighting,Physical,"60
+","10
+",0.9,[],[]
+Incinerate,"510
+",Fire,Special,"60*
+","15
+",1.0,[],[]
+Quash,"511
+",Dark,Status,"—
+","15
+",1.0,[],[]
+Acrobatics,"512
+",Flying,Physical,"55
+","15
+",1.0,[],[]
+Reflect Type,"513
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Retaliate,"514
+",Normal,Physical,"70
+","5
+",1.0,[],[]
+Final Gambit,"515
+",Fighting,Special,"—
+","5
+",1.0,[],[]
+Bestow,"516
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Inferno,"517
+",Fire,Special,"100
+","5
+",0.5,[],[]
+Water Pledge,"518
+",Water,Special,"80*
+","10
+",1.0,[],[]
+Fire Pledge,"519
+",Fire,Special,"80*
+","10
+",1.0,[],[]
+Grass Pledge,"520
+",Grass,Special,"80*
+","10
+",1.0,[],[]
+Volt Switch,"521
+",Electric,Special,"70
+","20
+",1.0,[],[]
+Struggle Bug,"522
+",Bug,Special,"50*
+","20
+",1.0,[],[]
+Bulldoze,"523
+",Ground,Physical,"60
+","20
+",1.0,[],[]
+Frost Breath,"524
+",Ice,Special,"60*
+","10
+",0.9,[],[]
+Dragon Tail,"525
+",Dragon,Physical,"60
+","10
+",0.9,[],[]
+Work Up,"526
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Electroweb,"527
+",Electric,Special,"55
+","15
+",0.95,[],[]
+Wild Charge,"528
+",Electric,Physical,"90
+","15
+",1.0,[],[]
+Drill Run,"529
+",Ground,Physical,"80
+","10
+",0.95,[],[]
+Dual Chop,"530
+",Dragon,Physical,"40
+","15
+",0.9,[],[]
+Heart Stamp,"531
+",Psychic,Physical,"60
+","25
+",1.0,[],[]
+Horn Leech,"532
+",Grass,Physical,"75
+","10
+",1.0,[],[]
+Sacred Sword,"533
+",Fighting,Physical,"90
+","15*
+",1.0,[],[]
+Razor Shell,"534
+",Water,Physical,"75
+","10
+",0.95,[],[]
+Heat Crash,"535
+",Fire,Physical,"—
+","10
+",1.0,[],[]
+Leaf Tornado,"536
+",Grass,Special,"65
+","10
+",0.9,[],[]
+Steamroller,"537
+",Bug,Physical,"65
+","20
+",1.0,[],[]
+Cotton Guard,"538
+",Grass,Status,"—
+","10
+","—
+",[],[]
+Night Daze,"539
+",Dark,Special,"85
+","10
+",0.95,[],[]
+Psystrike,"540
+",Psychic,Special,"100
+","10
+",1.0,[],[]
+Tail Slap,"541
+",Normal,Physical,"25
+","10
+",0.85,[],[]
+Hurricane,"542
+",Flying,Special,"110*
+","10
+",0.7,[],[]
+Head Charge,"543
+",Normal,Physical,"120
+","15
+",1.0,[],[]
+Gear Grind,"544
+",Steel,Physical,"50
+","15
+",0.85,[],[]
+Searing Shot,"545
+",Fire,Special,"100
+","5
+",1.0,[],[]
+Techno Blast,"546
+",Normal,Special,"120*
+","5
+",1.0,[],[]
+Relic Song,"547
+",Normal,Special,"75
+","10
+",1.0,[],[]
+Secret Sword,"548
+",Fighting,Special,"85
+","10
+",1.0,[],[]
+Glaciate,"549
+",Ice,Special,"65
+","10
+",0.95,[],[]
+Bolt Strike,"550
+",Electric,Physical,"130
+","5
+",0.85,[],[]
+Blue Flare,"551
+",Fire,Special,"130
+","5
+",0.85,[],[]
+Fiery Dance,"552
+",Fire,Special,"80
+","10
+",1.0,[],[]
+Freeze Shock,"553
+",Ice,Physical,"140
+","5
+",0.9,[],[]
+Ice Burn,"554
+",Ice,Special,"140
+","5
+",0.9,[],[]
+Snarl,"555
+",Dark,Special,"55
+","15
+",0.95,[],[]
+Icicle Crash,"556
+",Ice,Physical,"85
+","10
+",0.9,[],[]
+V-create,"557
+",Fire,Physical,"180
+","5
+",0.95,[],[]
+Fusion Flare,"558
+",Fire,Special,"100
+","5
+",1.0,[],[]
+Fusion Bolt,"559
+",Electric,Physical,"100
+","5
+",1.0,[],[]
+Flying Press,"560
+",Fighting,Physical,"100*
+","10
+",0.95,[],[]
+Mat Block,"561
+",Fighting,Status,"—
+","10
+","—
+",[],[]
+Belch,"562
+",Poison,Special,"120
+","10
+",0.9,[],[]
+Rototiller,"563
+",Ground,Status,"—
+","10
+","—
+",[],[]
+Sticky Web,"564
+",Bug,Status,"—
+","20
+","—
+",[],[]
+Fell Stinger,"565
+",Bug,Physical,"50*
+","25
+",1.0,[],[]
+Phantom Force,"566
+",Ghost,Physical,"90
+","10
+",1.0,[],[]
+Trick-or-Treat,"567
+",Ghost,Status,"—
+","20
+",1.0,[],[]
+Noble Roar,"568
+",Normal,Status,"—
+","30
+",1.0,[],[]
+Ion Deluge,"569
+",Electric,Status,"—
+","25
+","—
+",[],[]
+Parabolic Charge,"570
+",Electric,Special,"65*
+","20
+",1.0,[],[]
+Forest's Curse,"571
+",Grass,Status,"—
+","20
+",1.0,[],[]
+Petal Blizzard,"572
+",Grass,Physical,"90
+","15
+",1.0,[],[]
+Freeze-Dry,"573
+",Ice,Special,"70
+","20
+",1.0,[],[]
+Disarming Voice,"574
+",Fairy,Special,"40
+","15
+","—
+",[],[]
+Parting Shot,"575
+",Dark,Status,"—
+","20
+",1.0,[],[]
+Topsy-Turvy,"576
+",Dark,Status,"—
+","20
+","—*
+",[],['100% in Generation VI']
+Draining Kiss,"577
+",Fairy,Special,"50
+","10
+",1.0,[],[]
+Crafty Shield,"578
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+Flower Shield,"579
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+Grassy Terrain,"580
+",Grass,Status,"—
+","10
+","—
+",[],[]
+Misty Terrain,"581
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+Electrify,"582
+",Electric,Status,"—
+","20
+","—
+",[],[]
+Play Rough,"583
+",Fairy,Physical,"90
+","10
+",0.9,[],[]
+Fairy Wind,"584
+",Fairy,Special,"40
+","30
+",1.0,[],[]
+Moonblast,"585
+",Fairy,Special,"95
+","15
+",1.0,[],[]
+Boomburst,"586
+",Normal,Special,"140
+","10
+",1.0,[],[]
+Fairy Lock,"587
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+King's Shield,"588
+",Steel,Status,"—
+","10
+","—
+",[],[]
+Play Nice,"589
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Confide,"590
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Diamond Storm,"591
+",Rock,Physical,"100
+","5
+",0.95,[],[]
+Steam Eruption,"592
+",Water,Special,"110
+","5
+",0.95,[],[]
+Hyperspace Hole,"593
+",Psychic,Special,"80
+","5
+","—
+",[],[]
+Water Shuriken,"594
+",Water,Special,"15
+","20
+",1.0,[],[]
+Mystical Fire,"595
+",Fire,Special,"75*
+","10
+",1.0,[],[]
+Spiky Shield,"596
+",Grass,Status,"—
+","10
+","—
+",[],[]
+Aromatic Mist,"597
+",Fairy,Status,"—
+","20
+","—
+",[],[]
+Eerie Impulse,"598
+",Electric,Status,"—
+","15
+",1.0,[],[]
+Venom Drench,"599
+",Poison,Status,"—
+","20
+",1.0,[],[]
+Powder,"600
+",Bug,Status,"—
+","20
+",1.0,[],[]
+Geomancy,"601
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+Magnetic Flux,"602
+",Electric,Status,"—
+","20
+","—
+",[],[]
+Happy Hour,"603
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Electric Terrain,"604
+",Electric,Status,"—
+","10
+","—
+",[],[]
+Dazzling Gleam,"605
+",Fairy,Special,"80
+","10
+",1.0,[],[]
+Celebrate,"606
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Hold Hands,"607
+",Normal,Status,"—
+","40
+","—
+",[],[]
+Baby-Doll Eyes,"608
+",Fairy,Status,"—
+","30
+",1.0,[],[]
+Nuzzle,"609
+",Electric,Physical,"20
+","20
+",1.0,[],[]
+Hold Back,"610
+",Normal,Physical,"40
+","40
+",1.0,[],[]
+Infestation,"611
+",Bug,Special,"20
+","20
+",1.0,[],[]
+Power-Up Punch,"612
+",Fighting,Physical,"40
+","20
+",1.0,[],[]
+Oblivion Wing,"613
+",Flying,Special,"80
+","10
+",1.0,[],[]
+Thousand Arrows,"614
+",Ground,Physical,"90
+","10
+",1.0,[],[]
+Thousand Waves,"615
+",Ground,Physical,"90
+","10
+",1.0,[],[]
+Land's Wrath,"616
+",Ground,Physical,"90
+","10
+",1.0,[],[]
+Light of Ruin,"617
+",Fairy,Special,"140
+","5
+",0.9,[],[]
+Origin Pulse,"618
+",Water,Special,"110
+","10
+",0.85,[],[]
+Precipice Blades,"619
+",Ground,Physical,"120
+","10
+",0.85,[],[]
+Dragon Ascent,"620
+",Flying,Physical,"120
+","5
+",1.0,[],[]
+Hyperspace Fury,"621
+",Dark,Physical,"100
+","5
+","—
+",[],[]
+Breakneck Blitz,"622
+",Normal,Physical,"—
+","1
+","—
+",[],[]
+Breakneck Blitz,"623
+",Normal,Special,"—
+","1
+","—
+",[],[]
+All-Out Pummeling,"624
+",Fighting,Physical,"—
+","1
+","—
+",[],[]
+All-Out Pummeling,"625
+",Fighting,Special,"—
+","1
+","—
+",[],[]
+Supersonic Skystrike,"626
+",Flying,Physical,"—
+","1
+","—
+",[],[]
+Supersonic Skystrike,"627
+",Flying,Special,"—
+","1
+","—
+",[],[]
+Acid Downpour,"628
+",Poison,Physical,"—
+","1
+","—
+",[],[]
+Acid Downpour,"629
+",Poison,Special,"—
+","1
+","—
+",[],[]
+Tectonic Rage,"630
+",Ground,Physical,"—
+","1
+","—
+",[],[]
+Tectonic Rage,"631
+",Ground,Special,"—
+","1
+","—
+",[],[]
+Continental Crush,"632
+",Rock,Physical,"—
+","1
+","—
+",[],[]
+Continental Crush,"633
+",Rock,Special,"—
+","1
+","—
+",[],[]
+Savage Spin-Out,"634
+",Bug,Physical,"—
+","1
+","—
+",[],[]
+Savage Spin-Out,"635
+",Bug,Special,"—
+","1
+","—
+",[],[]
+Never-Ending Nightmare,"636
+",Ghost,Physical,"—
+","1
+","—
+",[],[]
+Never-Ending Nightmare,"637
+",Ghost,Special,"—
+","1
+","—
+",[],[]
+Corkscrew Crash,"638
+",Steel,Physical,"—
+","1
+","—
+",[],[]
+Corkscrew Crash,"639
+",Steel,Special,"—
+","1
+","—
+",[],[]
+Inferno Overdrive,"640
+",Fire,Physical,"—
+","1
+","—
+",[],[]
+Inferno Overdrive,"641
+",Fire,Special,"—
+","1
+","—
+",[],[]
+Hydro Vortex,"642
+",Water,Physical,"—
+","1
+","—
+",[],[]
+Hydro Vortex,"643
+",Water,Special,"—
+","1
+","—
+",[],[]
+Bloom Doom,"644
+",Grass,Physical,"—
+","1
+","—
+",[],[]
+Bloom Doom,"645
+",Grass,Special,"—
+","1
+","—
+",[],[]
+Gigavolt Havoc,"646
+",Electric,Physical,"—
+","1
+","—
+",[],[]
+Gigavolt Havoc,"647
+",Electric,Special,"—
+","1
+","—
+",[],[]
+Shattered Psyche,"648
+",Psychic,Physical,"—
+","1
+","—
+",[],[]
+Shattered Psyche,"649
+",Psychic,Special,"—
+","1
+","—
+",[],[]
+Subzero Slammer,"650
+",Ice,Physical,"—
+","1
+","—
+",[],[]
+Subzero Slammer,"651
+",Ice,Special,"—
+","1
+","—
+",[],[]
+Devastating Drake,"652
+",Dragon,Physical,"—
+","1
+","—
+",[],[]
+Devastating Drake,"653
+",Dragon,Special,"—
+","1
+","—
+",[],[]
+Black Hole Eclipse,"654
+",Dark,Physical,"—
+","1
+","—
+",[],[]
+Black Hole Eclipse,"655
+",Dark,Special,"—
+","1
+","—
+",[],[]
+Twinkle Tackle,"656
+",Fairy,Physical,"—
+","1
+","—
+",[],[]
+Twinkle Tackle,"657
+",Fairy,Special,"—
+","1
+","—
+",[],[]
+Catastropika,"658
+",Electric,Physical,"210
+","1
+","—
+",[],[]
+Shore Up,"659
+",Ground,Status,"—
+","10
+","—
+",[],[]
+First Impression,"660
+",Bug,Physical,"90
+","10
+",1.0,[],[]
+Baneful Bunker,"661
+",Poison,Status,"—
+","10
+","—
+",[],[]
+Spirit Shackle,"662
+",Ghost,Physical,"80
+","10
+",1.0,[],[]
+Darkest Lariat,"663
+",Dark,Physical,"85
+","10
+",1.0,[],[]
+Sparkling Aria,"664
+",Water,Special,"90
+","10
+",1.0,[],[]
+Ice Hammer,"665
+",Ice,Physical,"100
+","10
+",0.9,[],[]
+Floral Healing,"666
+",Fairy,Status,"—
+","10
+","—
+",[],[]
+High Horsepower,"667
+",Ground,Physical,"95
+","10
+",0.95,[],[]
+Strength Sap,"668
+",Grass,Status,"—
+","10
+",1.0,[],[]
+Solar Blade,"669
+",Grass,Physical,"125
+","10
+",1.0,[],[]
+Leafage,"670
+",Grass,Physical,"40
+","40
+",1.0,[],[]
+Spotlight,"671
+",Normal,Status,"—
+","15
+","—
+",[],[]
+Toxic Thread,"672
+",Poison,Status,"—
+","20
+",1.0,[],[]
+Laser Focus,"673
+",Normal,Status,"—
+","30
+","—
+",[],[]
+Gear Up,"674
+",Steel,Status,"—
+","20
+","—
+",[],[]
+Throat Chop,"675
+",Dark,Physical,"80
+","15
+",1.0,[],[]
+Pollen Puff,"676
+",Bug,Special,"90
+","15
+",1.0,[],[]
+Anchor Shot,"677
+",Steel,Physical,"80
+","20
+",1.0,[],[]
+Psychic Terrain,"678
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Lunge,"679
+",Bug,Physical,"80
+","15
+",1.0,[],[]
+Fire Lash,"680
+",Fire,Physical,"80
+","15
+",1.0,[],[]
+Power Trip,"681
+",Dark,Physical,"20
+","10
+",1.0,[],[]
+Burn Up,"682
+",Fire,Special,"130
+","5
+",1.0,[],[]
+Speed Swap,"683
+",Psychic,Status,"—
+","10
+","—
+",[],[]
+Smart Strike,"684
+",Steel,Physical,"70
+","10
+","—
+",[],[]
+Purify,"685
+",Poison,Status,"—
+","20
+","—
+",[],[]
+Revelation Dance,"686
+",Normal,Special,"90
+","15
+",1.0,[],[]
+Core Enforcer,"687
+",Dragon,Special,"100
+","10
+",1.0,[],[]
+Trop Kick,"688
+",Grass,Physical,"70
+","15
+",1.0,[],[]
+Instruct,"689
+",Psychic,Status,"—
+","15
+","—
+",[],[]
+Beak Blast,"690
+",Flying,Physical,"100
+","15
+",1.0,[],[]
+Clanging Scales,"691
+",Dragon,Special,"110
+","5
+",1.0,[],[]
+Dragon Hammer,"692
+",Dragon,Physical,"90
+","15
+",1.0,[],[]
+Brutal Swing,"693
+",Dark,Physical,"60
+","20
+",1.0,[],[]
+Aurora Veil,"694
+",Ice,Status,"—
+","20
+","—
+",[],[]
+Sinister Arrow Raid,"695
+",Ghost,Physical,"180
+","1
+","—
+",[],[]
+Malicious Moonsault,"696
+",Dark,Physical,"180
+","1
+","—
+",[],[]
+Oceanic Operetta,"697
+",Water,Special,"195
+","1
+","—
+",[],[]
+Guardian of Alola,"698
+",Fairy,Special,"—
+","1
+","—
+",[],[]
+Soul-Stealing 7-Star Strike,"699
+",Ghost,Physical,"195
+","1
+","—
+",[],[]
+Stoked Sparksurfer,"700
+",Electric,Special,"175
+","1
+","—
+",[],[]
+Pulverizing Pancake,"701
+",Normal,Physical,"210
+","1
+","—
+",[],[]
+Extreme Evoboost,"702
+",Normal,Status,"—
+","1
+","—
+",[],[]
+Genesis Supernova,"703
+",Psychic,Special,"185
+","1
+","—
+",[],[]
+Shell Trap,"704
+",Fire,Special,"150
+","5
+",1.0,[],[]
+Fleur Cannon,"705
+",Fairy,Special,"130
+","5
+",0.9,[],[]
+Psychic Fangs,"706
+",Psychic,Physical,"85
+","10
+",1.0,[],[]
+Stomping Tantrum,"707
+",Ground,Physical,"75
+","10
+",1.0,[],[]
+Shadow Bone,"708
+",Ghost,Physical,"85
+","10
+",1.0,[],[]
+Accelerock,"709
+",Rock,Physical,"40
+","20
+",1.0,[],[]
+Liquidation,"710
+",Water,Physical,"85
+","10
+",1.0,[],[]
+Prismatic Laser,"711
+",Psychic,Special,"160
+","10
+",1.0,[],[]
+Spectral Thief,"712
+",Ghost,Physical,"90
+","10
+",1.0,[],[]
+Sunsteel Strike,"713
+",Steel,Physical,"100
+","5
+",1.0,[],[]
+Moongeist Beam,"714
+",Ghost,Special,"100
+","5
+",1.0,[],[]
+Tearful Look,"715
+",Normal,Status,"—
+","20
+","—
+",[],[]
+Zing Zap,"716
+",Electric,Physical,"80
+","10
+",1.0,[],[]
+Nature's Madness,"717
+",Fairy,Special,"—
+","10
+",0.9,[],[]
+Multi-Attack,"718
+",Normal,Physical,"90
+","10
+",1.0,[],[]
+"10,000,000 Volt Thunderbolt","719
+",Electric,Special,"195
+","1
+","—
+",[],[]
+Mind Blown,"720
+",Fire,Special,"150
+","5
+",1.0,[],[]
+Plasma Fists,"721
+",Electric,Physical,"100
+","15
+",1.0,[],[]
+Photon Geyser,"722
+",Psychic,Special,"100
+","5
+",1.0,[],[]
+Light That Burns the Sky,"723
+",Psychic,Special,"200
+","1
+","—
+",[],[]
+Searing Sunraze Smash,"724
+",Steel,Special,"200
+","1
+","—
+",[],[]
+Menacing Moonraze Maelstrom,"725
+",Ghost,Special,"200
+","1
+","—
+",[],[]
+Let's Snuggle Forever,"726
+",Fairy,Physical,"190
+","1
+","—
+",[],[]
+Splintered Stormshards,"727
+",Rock,Physical,"190
+","1
+","—
+",[],[]
+Clangorous Soulblaze,"728
+",Dragon,Special,"185
+","1
+","—
+",[],[]
