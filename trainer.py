@@ -49,6 +49,7 @@ class TrainerAI:
 
         self.prev_decision = ["None", "None"] # will update to ["Move", "Flamethrower"], ["Item", "Potion"], ["Switch", "Pokemon-Swapped-In"]
         self.out = False # gets set to True if all PKMN are at 0
+        self.removed = False
         self.score = 0 # +1 for every opponent Pokemon defeated -1 for every owned pokemon defeated
         self.faintCount = 0
 
@@ -88,7 +89,10 @@ class TrainerAI:
         if len(self.opponent) > 1:
 
             all_max_hits = [x for x in self.type_list if x == max(self.type_list)]
-            all_ind = [x for x in range(len(all_max_hits)) if self.opponent[x].out == False]
+            all_ind = [x for x in range(len(all_max_hits)) if (self.opponent[x].lead.canBattle == True)]
+            if all_ind == []:
+                return "miss"
+
             target = random.choice(all_ind)
             #mex2 = mex.index(max(mex))
             # print("Target ind:", target)
@@ -103,8 +107,8 @@ class TrainerAI:
         https://bulbapedia.bulbagarden.net/wiki/Damage ,
         mi is the move index, battle is the battle class it's in"""
 
-        # Type effectiveness
-        self.selectOpponent()
+        # Type effectiveness and target
+        #self.selectOpponent()
 
         # print("Testing: " + self.lead.name + " used " + self.lead.moveData[mi].name + " on " + self.toAttack.lead.name)
 
@@ -259,30 +263,34 @@ class TrainerAI:
             if self.lead.moveData[sim].power != None and self.lead.pp[sim] > 0:
                 score[sim] = self.DamageCalc(sim, battle)
             else:
-                score[sim] = 0
+                score[sim] = -1
 
-        print(self.lead.name + " used " + str(self.lead.moves[score.index(max(score))]) + "!")
+        print(self.lead.name + " used " + str(self.lead.moves[score.index(max(score))]) + " on " + self.toAttack.lead.name + "!")
+
 
         self.lead.pp[score.index(max(score))] -= 1
+
+        # if max(score) == 0:
+        #     print("The attack missed!")
+        #     return [-2, 'no target']
+
         return [score.index(max(score)), max(score)]
 
     def switchPkmn(self):
         if len(self.team) > 1:
-            self.lead_index += 1
-            out = 0
-            if(self.lead_index >= self.team_count):
-                self.lead_index = 0
-
-            while(self.poke_team[self.lead_index].canBattle == False):
-                out +=1
+            if self.faintCount >= self.team_count:
+                self.out = True
+                return
+            else:
+                self.lead_index += 1
                 if(self.lead_index >= self.team_count):
                     self.lead_index = 0
-                else:
-                    self.lead_index += 1
+                while(self.poke_team[self.lead_index].canBattle == False):
+                    if(self.lead_index >= self.team_count):
+                        self.lead_index = 0
+                    else:
+                        self.lead_index += 1
 
-                if(out >= self.team_count):
-                    self.out = True
-                    return # Doesn't switch
         else:
             if self.lead.canBattle == False:
                 self.out = True
@@ -332,9 +340,9 @@ Rai = TrainerAI("Rai", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squ
 # Rai.switchPkmn()
 # print ("Rai switched Pokemon!")
 # print(Rai)
-Chu = TrainerAI("Chu", [ ["pikachu", "", 65, ["thunderbolt", "iron tail"], ""], ["squirtle", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
+Chu = TrainerAI("Chu", [ ["minun", "", 65, ["thunderbolt", "iron tail"], ""], ["zubat", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
 
 ## Some Defaults
-Rai2 = TrainerAI("Rai-2", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squirtle", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
+Rai2 = TrainerAI("Rai-2", [ ["shinx", "", 5, ["thunderbolt", "spark"], ""], ["gastly", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
 
 Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)

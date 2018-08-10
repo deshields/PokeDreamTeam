@@ -6,6 +6,8 @@ def set_opponent(TrainerA, TrainerB):
     TrainerA.opponent.append(TrainerB)
     TrainerB.opponent.append(TrainerA)
 
+
+
 class Battle:
     # Single Battle Only For Now, not taking player items into account
     # In double battle, use set_opponent to switch targets OR just iterate through the list of opponents
@@ -19,6 +21,8 @@ class Battle:
         weather = "CLEAR"
         self.ATeam =[]
         self.BTeam =[]
+        self.ogA = self.ATeam
+        self.ogB = self.BTeam
         self.names = [[], []]
         self.A_total = 0
         self.B_total = 0
@@ -101,19 +105,21 @@ class Battle:
                 return
 
         dmg = attacker.predictDMG(self)[1]
+        if defender.lead.canBattle == True:
+            defender.lead.cur_hp = defender.lead.cur_hp - dmg
+            print(defender.lead.name + " took " + str(dmg) + " damage!")
+            if(defender.lead.cur_hp <= 0):
 
-        defender.lead.cur_hp = defender.lead.cur_hp - dmg
-        print(defender.lead.name + " took " + str(dmg) + " damage!")
-        if(defender.lead.cur_hp <= 0):
-            print(defender.lead.name + " fainted!")
-            attacker.score += 1
-            defender.score -= 1
-            defender.lead.canBattle = False
-            if defender.side == "A":
-                self.Af +=1
-            else:
-                self.Bf +=1
-            self.check_wins()
+                attacker.score += 1
+                defender.score -= 1
+                defender.lead.canBattle = False
+                print(defender.lead.name + " fainted!")
+                defender.faintCount += 1
+                if defender.side == "A":
+                    self.Af +=1
+                else:
+                    self.Bf +=1
+                self.check_wins()
 
     def getSpeed(self, player):
         return player.lead.speed
@@ -154,10 +160,12 @@ class Battle:
         # Check win
 
         self.round += 1
+        print("")
         print("Round: ", self.round)
         check_order = False
         if self.over == True:
-            return "Battle over"
+            print("---- Battle OVER ----")
+            return
 
 
 
@@ -166,7 +174,8 @@ class Battle:
             # Faster trainer uses move first
 
 
-            if p.lead.canBattle == True:
+            if p.lead.canBattle == True and p.out == False:
+                # self.check_wins()
                 print(p.name+"'s Turn!")
 
             # Trainers make their decision
@@ -185,7 +194,11 @@ class Battle:
                     check_order = True
 
                 else:
-                    self.takeBattleDmg(p, p.toAttack)
+                    chec = p.selectOpponent()
+                    if chec != "miss":
+                        self.takeBattleDmg(p, p.toAttack)
+                    else:
+                        print("But there was no target.")
 
 
             ### After fighting
@@ -199,9 +212,20 @@ class Battle:
 
         # switch if pokemon fainted
         for p in self.players:
-            if p.lead.canBattle == False and p.out == False:
+            if p.lead.canBattle == False:
                 p.switchPkmn()
                 # self.check_wins()
+            if p.out == True and p.removed == False:
+                if p.side == "A":
+                    self.ATeam.remove(p)
+                    for o in self.BTeam:
+                        o.opponent.remove(p)
+                else:
+                    self.BTeam.remove(p)
+                    for o in self.ATeam:
+                        o.opponent.remove(p)
+                p.removed = True
+                print("~~~~~~~~~ " + p.name + " is removed from battle!")
 
 
 
