@@ -47,9 +47,9 @@ bptr = bad_poison_table.find_all("tr")[1:]
 # TODO: add the other effects before the write statement
 
 
-with open("status_causing_moves.csv", 'w') as init:
+with open("all_moves.csv", 'w') as init:
     hdrs = ["Name", "No.", "Type", "Category", "Power", "PP", "Accuracy", "Effect", "Notes"] # Effect => ["Freeze", 6.67]
-    writer = csv.DictWriter(init, fieldnames=hdrs)
+    writer = csv.DictWriter(init, fieldlsnames=hdrs)
     writer.writeheader()
 
 #     # Scan all moves first

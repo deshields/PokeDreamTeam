@@ -3,8 +3,14 @@ from poke import PokemonMember
 from numpy import random
 
 def set_opponent(TrainerA, TrainerB):
+    """ Tell the trainers who their opponents are """
     TrainerA.opponent.append(TrainerB)
     TrainerB.opponent.append(TrainerA)
+
+def set_ally(TrainerA, TrainerB):
+    """ Tell the trainers who their allies are """
+    TrainerA.allies.append(TrainerB)
+    TrainerB.allies.append(TrainerA)
 
 
 
@@ -34,12 +40,12 @@ class Battle:
         for p in players:
             if p.side == "A":
                 self.ATeam.append(p)
-                self.names[0].append(p.name)
+                self.names[0].append(p.name) # For Battle title A vs B
                 self.A_total += p.team_count
 
             else:
                  self.BTeam.append(p)
-                 self.names[1].append(p.name)
+                 self.names[1].append(p.name) # For Battle title A vs B
                  self.B_total += p.team_count
 
         for A in self.ATeam:
@@ -49,17 +55,32 @@ class Battle:
                 B.toAttack = A
 
         print("Battle of ", self.names[0], " vs. ", self.names[1])
-
-
         self.findBattleOrder()
 
-    # def __repr__(self):
-    #     print("Round: ", self.round)
-    #     print("Trainers: ", self.players)
-    #
-    #     return ""
+
+    def RemoveTrainer(self):
+        """ Removes the trainer from battle so no one mistakingly attacks them """
+
+        for p in self.players:
+            if p.out == True and p.removed == False:
+                if p.side == "A":
+                    self.ATeam.remove(p)
+                    for o in self.BTeam:
+                        o.opponent.remove(p)
+                        print(o.name + "'s Opponent List:", len(o.opponent))
+                else:
+                    self.BTeam.remove(p)
+                    for o in self.ATeam:
+                        o.opponent.remove(p)
+                        print(o.name + "'s Opponent List:", len(o.opponent))
+                p.removed = True
+                print("~~~~~~~~~ " + p.name + " is removed from battle!")
 
     def takeStatusDmg(self):
+        """ For status damage at the end of the round """
+        # TODO: Scrape and implement status damage and probabilities for moves
+
+
         for p in self.players:
             if p.lead.status[0] == "BURNED" or p.lead.status[0] == "POISONED":
                 if p.gen == 1:
@@ -73,7 +94,6 @@ class Battle:
 
     def takeBattleDmg(self, attacker, defender):
         """ Calculates the damage between two pokemon; NOTE: it does NOT account for moves like Surf in a double Battle """
-        # move_index = atttacker.nextMove()
 
         if "PARALYZED" in attacker.lead.status:
             if random.randint(4) == 2:
@@ -111,7 +131,8 @@ class Battle:
             if(defender.lead.cur_hp <= 0):
 
                 attacker.score += 1
-                defender.score -= 1
+                # defender.score -= 1\
+                attacker.lead.pokeScore += 1
                 defender.lead.canBattle = False
                 print(defender.lead.name + " fainted!")
                 defender.faintCount += 1
@@ -119,25 +140,22 @@ class Battle:
                     self.Af +=1
                 else:
                     self.Bf +=1
+
+
+
                 self.check_wins()
 
     def getSpeed(self, player):
+        """Gets the leading pokemon's speed"""
         return player.lead.speed
 
     def findBattleOrder(self):
-        current_leads = []
-        order = [len(self.players)]
-        speed = 0
-        speediest = 0
-        for p in self.players:
-            current_leads.append(p.lead)
-
+        """Puts the players in the proper turn order based on leading pokemon speed """
         self.players.sort(key=self.getSpeed, reverse=True)
-
-        # print(self.players)
 
 
     def check_wins(self):
+        """ Check if a side is out of pokemon and declare the other side the winner """
 
         if  self.Af == self.A_total and self.Bf == self.B_total:
             print("Draw")
@@ -156,7 +174,7 @@ class Battle:
 
 
     def nextRound(self):
-
+        """ Process the round for all trainers """
         # Check win
 
         self.round += 1
@@ -170,16 +188,12 @@ class Battle:
 
 
         for p in self.players:
-            # All trainers plan - may be obselete soon
-            # Faster trainer uses move first
 
-
-            if p.lead.canBattle == True and p.out == False:
+            if p.lead.canBattle == True and p.out == False and p.OpponentsCanBattle():
                 # self.check_wins()
                 print(p.name+"'s Turn!")
 
             # Trainers make their decision
-            ### TAKE TURNS HERE ####
 
                 choice = p.nextTurn()
 
@@ -194,41 +208,32 @@ class Battle:
                     check_order = True
 
                 else:
+                    self.RemoveTrainer()
                     chec = p.selectOpponent()
                     if chec != "miss":
                         self.takeBattleDmg(p, p.toAttack)
+                        self.RemoveTrainer() #Can probably optimize this
                     else:
                         print("But there was no target.")
 
 
             ### After fighting
+            # Burn & Poison Damage // round by round healing
 
         self.takeStatusDmg()
         if check_order:
             self.findBattleOrder()
             check_order = False
-            # Burn & Poison Damage // round by round healing
 
 
         # switch if pokemon fainted
         for p in self.players:
             if p.lead.canBattle == False:
                 p.switchPkmn()
-                # self.check_wins()
-            if p.out == True and p.removed == False:
-                if p.side == "A":
-                    self.ATeam.remove(p)
-                    for o in self.BTeam:
-                        o.opponent.remove(p)
-                else:
-                    self.BTeam.remove(p)
-                    for o in self.ATeam:
-                        o.opponent.remove(p)
-                p.removed = True
-                print("~~~~~~~~~ " + p.name + " is removed from battle!")
 
 
 
+### Some presets
 Sample_Battle = Battle('SINGLE', [Rai, Chu, Cynthia, Rai2])
 # print(Rai.lead)
 # print(Cynthia.lead)

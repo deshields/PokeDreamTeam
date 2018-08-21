@@ -43,6 +43,7 @@ class TrainerAI:
         self.items = items # if use is true, list of strings, otherwise null
         self.gen = generation # String - optional
         self.opponent = []
+        self.allies = []
         self.toAttack = None # Trainer class
         self.side = side # 'A' or 'B'
         self.type_list = None
@@ -84,21 +85,39 @@ class TrainerAI:
 
         return move_eff
 
+    def OpponentsCanBattle(self):
+        """ Check if the opponents can all battle """
+
+        out = 0
+        for o in self.opponent:
+            if (o.lead.canBattle) != True or o.out:
+                out += 1
+        if out == len(self.opponent):
+            return False
+        else:
+            return True
+
     def selectOpponent(self):
+
+        """ Select who to attack next """
+
         self.type_list = self.findEff()
         if len(self.opponent) > 1:
 
             all_max_hits = [x for x in self.type_list if x == max(self.type_list)]
+            # print("all_max_hits: ", all_max_hits)
             all_ind = [x for x in range(len(all_max_hits)) if (self.opponent[x].lead.canBattle == True)]
+            # print("all_ind: ", all_ind)
             if all_ind == []:
                 return "miss"
 
-            target = random.choice(all_ind)
+            self.current_target = random.choice(all_ind)
             #mex2 = mex.index(max(mex))
             # print("Target ind:", target)
             #print("M2",mex2)
-            self.toAttack = self.opponent[target]
+            self.toAttack = self.opponent[self.current_target]
         else:
+            self.current_target = 0
             self.toAttack = self.opponent[0]
 
 
@@ -111,6 +130,11 @@ class TrainerAI:
         #self.selectOpponent()
 
         # print("Testing: " + self.lead.name + " used " + self.lead.moveData[mi].name + " on " + self.toAttack.lead.name)
+
+        if self.lead.moveData[mi].target.name != 'selected-pokemon':
+            targets = 0.75
+        else:
+            targets = 1
 
         if self.lead.moveData[mi].damage_class.name == 'physical':
             dmg = ( ( ( ( (2 * self.lead.level)/5 ) + 2 ) * self.lead.moveData[mi].power * (self.lead.att / self.toAttack.lead.defe) ) / 50 ) + 2
@@ -141,15 +165,13 @@ class TrainerAI:
             r = random.randint(217,256)/255
 
         # STAB
-
         stab = 1.5 if self.lead.moveData[mi].type.name in self.lead.type else 1
 
-
-        t = self.type_list[0][mi] # TODO: For now, always attack the opponent in index 0
+        # print(self.type_list, "current_target: ", self.current_target, "mi: ", mi)
+        t = self.type_list[self.current_target][mi] # TODO: For now, always attack the opponent in index 0
 
         # THIS MODIFIER IS ONLY TO BE USED FOR SINGLE BATTLES SINCE THERE IS ONE TARGET
-
-        modifier = w * self.isCrit(mi) * r * stab * t * burn # * other ( * badge for gen ii)
+        modifier = targets * w * self.isCrit(mi) * r * stab * t * burn # * other ( * badge for gen ii)
 
         #print("Total damage: " + str(modifier * dmg))
 
@@ -254,16 +276,39 @@ class TrainerAI:
 
     def predictDMG(self, battle):
         """ returns score/dmg for each move order; we want to use the highest score next """
+        # # OPTIMIZE: if they're all the same pokemon and no status or pokemon switch has occurred, there's no need to
+            # always recalculate hits. We could save how much each does, and if the damage is equal or very similar between moves
+            # alternate or move to the next best move
 
         # lookahead would be no greater than one
         score = [0 for x in range(len(self.lead.moveData))]
+        ogToAttack = self.toAttack
         for sim in range(len(self.lead.moveData)):
-            # TODO: calculate damage after each lookahead; we can also call nextTurn and see the total damage at the end
-            # selected_att = att_eff.index(max(att_eff))
             if self.lead.moveData[sim].power != None and self.lead.pp[sim] > 0:
-                score[sim] = self.DamageCalc(sim, battle)
+                if self.lead.moveData[sim].target.name == 'selected-pokemon':
+                    if self.toAttack.lead.canBattle == True:
+                        score[sim] = self.DamageCalc(sim, battle)
+                elif self.lead.moveData[sim].target.name == 'all-opponents':
+                    total = 0
+                    for o in self.opponent:
+                        self.toAttack = o
+                        total += self.DamageCalc(sim, battle)
+                    score[sim] = total
+                elif self.lead.moveData[sim].target.name == 'all-other-pokemon':
+                    total = 0
+
+                    for t in battle.players:
+                        if t != self:
+                            if t.side == self.side:
+                                self.toAttack = t
+                                total -= 2 * self.DamageCalc(sim, battle)
+                            else:
+                                self.toAttack = t
+                                total += self.DamageCalc(sim, battle)
             else:
                 score[sim] = -1
+
+        self.toAttack = ogToAttack
 
         print(self.lead.name + " used " + str(self.lead.moves[score.index(max(score))]) + " on " + self.toAttack.lead.name + "!")
 
@@ -274,9 +319,10 @@ class TrainerAI:
         #     print("The attack missed!")
         #     return [-2, 'no target']
 
-        return [score.index(max(score)), max(score)]
+        return [score.index(max(score)), max(score), self.lead.moveData[score.index(max(score))].target.name]
 
     def switchPkmn(self):
+        """ Switches leading pokemon """
         if len(self.team) > 1:
             if self.faintCount >= self.team_count:
                 self.out = True
@@ -299,6 +345,7 @@ class TrainerAI:
         # print("Switched out " + self.lead.name + " for " + self.poke_team[self.lead_index].name)
         # print("")
         if self.out == False:
+            print(self.name + " sent out " + self.poke_team[self.lead_index].name + "!")
             self.lead = self.poke_team[self.lead_index]
 
     def useItem(self, item):
@@ -335,14 +382,9 @@ class TrainerAI:
             return "Fight"
 
 
+### Presets
+
 Rai = TrainerAI("Rai", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squirtle", "", 10, ["confuse ray", "lick"], ""] ], "A", [], 4)
-# print(Rai)
-# Rai.switchPkmn()
-# print ("Rai switched Pokemon!")
-# print(Rai)
 Chu = TrainerAI("Chu", [ ["minun", "", 65, ["thunderbolt", "iron tail"], ""], ["zubat", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
-
-## Some Defaults
 Rai2 = TrainerAI("Rai-2", [ ["shinx", "", 5, ["thunderbolt", "spark"], ""], ["gastly", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
-
 Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)

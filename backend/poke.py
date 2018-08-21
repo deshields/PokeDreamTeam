@@ -8,9 +8,6 @@ import math
 df = pd.read_csv('pokemon.csv', index_col = 30) # Read by Pokemon Name
 tc = pd.read_csv('type_chart.csv', index_col = 0)
 
-
-
-
 class PokemonMember:
 
     def __init__(self, name, abil, lvl, moves, item):
@@ -40,6 +37,7 @@ class PokemonMember:
         self.status = ["NONE", -1] # "FAINTED", "SLEEP", "PARALYZED", "FROZEN", "BADLY POISONED", "POISONED", "BURNED" - if [-1] is the second value, then it stays until cured
         self.sub_status = [] # "INLOVE", "CONFUSED", "PROTECTED", "AIRBORNE", "LOCKED ON" <- Basically the stackable statuses
         self.canBattle = True #False means "Fainted"
+        self.pokeScore = 0
 
 
         # TODO: IMPLEMENT HELD ITEMS
@@ -64,6 +62,8 @@ class PokemonMember:
         return ""
 
     def calculateStats(self):
+        """ Using the stat formula, calculate stats. IV is omitted from calculation and assume a random Effort value """
+
         self.att = math.floor(math.floor((2 * self.att + 0 + random.randint(0, 63)) * self.level / 100 + 5) * 1)
         self.defe = math.floor(math.floor((2 * self.defe + 0 + random.randint(0 ,63)) * self.level / 100 + 5) * 1)
         self.spatt = math.floor(math.floor((2 * self.spatt + 0 + random.randint(0 ,63)) * self.level / 100 + 5) * 1)
@@ -71,16 +71,12 @@ class PokemonMember:
         self.speed = math.floor(math.floor((2 * self.speed + 0 + random.randint(0 ,63)) * self.level / 100 + 5) * 1)
         self.hp = math.floor((2 * self.speed + 0 + random.randint(0,63)) * self.level / 100) + 10 + self.level
 
-    #Stat = math.floor(math.floor((2 * B + I + E) * L / 100 + 5) * N)
-    # B - Base, I - Individual Value, E - Effort Value, L - Level, N - Nature (assume 1)
-
     def getMoveData(self):
 
         """ Convert the string input to move data using the pokebase api """
 
         for i in range(len(self.moves)):
             name = self.moves[i].replace(" ", "-")
-            #print(self.moves[i])
             self.moveData[i] = pb.move(name)
             self.pp[i] = self.moveData[i].pp
 
@@ -92,9 +88,7 @@ class PokemonMember:
         for t in opp_type:
             tt = t.title()
             move = self.moveData[move_index].type.name.title()
-            # move = move.title()
             e = e * tc.loc[move][tt]
-            #e = e * df.loc[self.name][check]
         return e
 
 #print(PokemonMember('luxray', [], 40, ["spark", "bite", "charge", "quick attack"], "NONE"))
