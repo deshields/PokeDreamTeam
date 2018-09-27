@@ -1,0 +1,27 @@
+{
+  "name": "PokeDreamTeam",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adeshiel/PokeDreamTeam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adeshiel/PokeDreamTeam/issues"
+  },
+  "homepage": "https://github.com/adeshiel/PokeDreamTeam#readme",
+  "dependencies": {
+    "rc-input-number": "^4.1.0",
+    "react-autosuggest": "^9.4.0",
+    "react-numeric-input": "^2.2.3",
+    "vue": "^2.5.17",
+    "vue2-autocomplete-js": "^0.2.2"
+  }
+}

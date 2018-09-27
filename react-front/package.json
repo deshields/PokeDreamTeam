@@ -1,0 +1,20 @@
+{
+  "name": "react-front",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "pokeapi-js-wrapper": "^1.1.1",
+    "pokedex-promise-v2": "^3.1.1",
+    "pokemon-images": "^2.0.1",
+    "rc-input-number": "^4.1.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
