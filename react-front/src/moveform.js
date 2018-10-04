@@ -26,9 +26,12 @@ class MoveAuto extends React.Component {
     this.state = {
       value: '',
       suggestions: [],
-      form: '',
       id: '',
     };
+  }
+
+  getMoveData = () => {
+    return this.state.value
   }
 
   onChange = (event, {newValue}) => {

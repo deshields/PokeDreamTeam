@@ -24,17 +24,23 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
+var levelnum = 1
+
 class PokeAuto extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       value: '',
+      onSubmit: this.handleSubmit,
       suggestions: [],
       lvl: 1,
       side: '',
-      form: '',
+      // form: '',
       poke: 'Pikachu',
-      move1: ''
+      move1: '',
+      move2: '',
+      move3: '',
+      move4: '',
       };
     };
 
@@ -42,11 +48,9 @@ class PokeAuto extends React.Component {
   this.setState({value: event.target.value});
 };
 
-// handleLvlChange(event) {
-//   this.setState( state => ({
-//       lvl: state.lvl + 1
-//     })
-// }
+  getData = () => {
+    return {"sprite": Pokemon.getSprite(this.state.poke), "name": this.state.poke, "side": this.props.side, "level": this.state.lvl, "move1": this.state.move1, "move2": this.state.move2, "move3": this.state.move3, "move4": this.state.move4}
+  }
 
   onChange = (event, {newValue, method}) => {
     this.setState({
@@ -71,6 +75,27 @@ class PokeAuto extends React.Component {
 
   };
 
+  numChange(num) {
+    levelnum = num
+    return num
+  }
+
+
+  handleSubmit = () => {
+    this.setState({
+      move1: this.move_1.getMoveData(),
+      move2: this.move_2.getMoveData(),
+      move3: this.move_3.getMoveData(),
+      move4: this.move_4.getMoveData(),
+      lvl: levelnum
+    }, function () {
+      console.log(this.state.move1)
+      console.log(this.move_1.getMoveData())
+      return this.getData()
+
+    });
+  }
+
   render() {
     const { value, suggestions } = this.state;
     const pokeProp = {
@@ -81,7 +106,8 @@ class PokeAuto extends React.Component {
     const suggestedPokemon = getSuggestionValue
 
     return(
-      <div className='pokeform'>
+      <div>
+
 
         <Autosuggest
           id={'PokemonName'}
@@ -93,20 +119,20 @@ class PokeAuto extends React.Component {
           inputProps={pokeProp}
         />
 
-        <img src={Pokemon.getSprite(this.state.poke)} className={'spriteImg'}/>
+        <img src={Pokemon.getSprite(this.state.poke)} className={'spriteImg'} alt=""/>
 
 
-        <NumericInput mobile min={1} max={100} strict className="lvl" id= "lvl" placeholder="Enter level."/>
+        <NumericInput mobile min={1} max={100} strict className="lvl" id="lvl" placeholder="Enter level." format={this.numChange}/>
 
         <div className='moves'>
           <table>
           <tr>
-            <td><MoveAuto id={'move1'}/> </td>
-            <td><MoveAuto id={'move2'}/> </td>
+            <td><MoveAuto id={'move1'} ref={(ref) => this.move_1 = ref}/> </td>
+            <td><MoveAuto id={'move2'} ref={(ref) => this.move_2 = ref}/> </td>
 
           </tr> <tr>
-            <td> <MoveAuto id={'move3'}/></td>
-            <td><MoveAuto id={'move4'}/></td>
+            <td><MoveAuto id={'move3'} ref={(ref) => this.move_3 = ref}/></td>
+            <td><MoveAuto id={'move4'} ref={(ref) => this.move_4 = ref}/></td>
             </tr>
           </table>
 
