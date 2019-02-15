@@ -89,8 +89,6 @@ class PokeAuto extends React.Component {
       move4: this.move_4.getMoveData(),
       lvl: levelnum
     }, function () {
-      console.log(this.state.move1)
-      console.log(this.move_1.getMoveData())
       return this.getData()
 
     });
@@ -141,7 +139,7 @@ class PokeAuto extends React.Component {
     </div>
     );
 
-  }
+  } 
 
 }
 export default PokeAuto;

@@ -384,7 +384,9 @@ class TrainerAI:
 
 ### Presets
 
-Rai = TrainerAI("Rai", [ ["pikachu", "", 5, ["thunderbolt", "spark"], ""], ["squirtle", "", 10, ["confuse ray", "lick"], ""] ], "A", [], 4)
+Rai = TrainerAI("Rai", [ ["magikarp", "", 100, ["spacial rend", "spark", "blizzard", "earthquake"], ""] ], "A", [], 4)
 Chu = TrainerAI("Chu", [ ["minun", "", 65, ["thunderbolt", "iron tail"], ""], ["zubat", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
 Rai2 = TrainerAI("Rai-2", [ ["shinx", "", 5, ["thunderbolt", "spark"], ""], ["gastly", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
 Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)
+
+Anthony = TrainerAI("Antone", [ ["mewtwo", "", 50, ["tackle", "splash", "dark pulse"], ""], ["darkrai", "", 50, ["flamethrower", "psychic", "lick", "roar of time"], "" ] ], "B", [], 4 )

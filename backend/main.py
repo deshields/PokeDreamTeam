@@ -19,9 +19,14 @@ def Simulate(battle):
 
     while battle.over == False:
         battle.nextRound()
+        sendToLog(battle)
 
     for p in battle.players:
         print(p.name + " scored " + str(p.score) + " point(s)!")
         scores.append([p.name, p.score])
 
+
 Simulate(Sample_Battle)
+
+def sendToLog(battle):
+    return battle.getBattleLog()

@@ -99,16 +99,14 @@ body {
   align-items: left;
   border: 2px solid gray;
   border-radius: 5px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 .lvl {
   position: relative;
-  /* right: 43%; */
   margin-right: 0px;
   border-radius: 5px;
   border: 1px solid gray;
   align-self: baseline;
-  /* width: 90px; */
 }
 
 .react-numeric-input{
@@ -119,8 +117,37 @@ body {
   left:-157px;
 }
 .pokemonInput {
-  display: inline;
+position: relative;
+width: fit-content;
+margin-left: auto;
+margin-right: auto;
+display: block;
 
+}
+
+.log {
+    font-size: 90%;
+    width: 45%;
+    height: 50%;
+    border-radius: 6px;
+    padding: 10px 20px 0px 20px;
+    position: relative;
+    display: block;
+    box-shadow: 0px 0px 5px grey;
+    border-width: 0px 0px 0px 10px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 80%;
+    min-width: 300px;
+    top: 20px;
+    overflow-y: auto;
+  }
+
+
+.Team {
+  position: relative;
+  float: left;
+  margin: 15px;
 }
 
 .spriteImg {
@@ -130,4 +157,19 @@ body {
   margin-left: 300px;
   margin-top: -50px;
 
+}
+
+
+.Teamlist ul {
+  list-style: none;
+  position: relative;
+  margin-top: 60px;
+  margin-bottom: 50px;
+  right: 25%;
+}
+
+.Teamlist ul li {
+  display: inline;
+  margin-top: 300px;
+  padding: 50px;
 }
