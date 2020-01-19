@@ -260,7 +260,7 @@ class Battle:
 
 
 ### Some presets
-Sample_Battle = Battle('SINGLE', [Rai, Cynthia, Rai2, Chu])
+# Sample_Battle = Battle('SINGLE', [Rai, Cynthia, Rai2, Chu])
 # print(Rai.lead)
 # print(Cynthia.lead)
 # Sample_Battle.nextRound()

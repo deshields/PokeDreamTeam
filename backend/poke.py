@@ -3,7 +3,6 @@ import pandas as pd
 import pokebase as pb
 from numpy import random
 import math
-# from flask import Flask, render_template, jsonify, request
 
 df = pd.read_csv('pokemon.csv', index_col = 30) # Read by Pokemon Name
 tc = pd.read_csv('type_chart.csv', index_col = 0)

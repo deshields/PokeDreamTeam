@@ -25,6 +25,16 @@ def makePokemon():
     item = request.form['item']
     Pokemon = PokemonMember(name, '', lvl, moves, item)
 
+def makeTeam(team):
+        """ Converts string team input to PokemonMember class """
+        new_team = []
+        for p in team:
+            # print(p)
+            # if side == p['all']['side']:
+            #     data = p['all']
+            new_team.append(PokemonMember(*p))
+        return new_team
+
 
 class TrainerAI:
 
@@ -34,10 +44,9 @@ class TrainerAI:
         assert(team != [])
         #assert(region == "KANTO" or region == "JOHTO" or region == "HOENN" or region == "SINNOH" or region == "UNOVA")
         self.name = name # String - optional
-        self.team = team # List of strings or Pokemon Objects [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
+        # self.team = team # List of strings or Pokemon Objects [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
         self.team_count = len(team)
-        self.poke_team = []
-        self.makeTeam()
+        self.poke_team = makeTeam(team)
         self.lead = self.poke_team[0]
         self.lead_index = 0
         self.items = items # if use is true, list of strings, otherwise null
@@ -63,10 +72,7 @@ class TrainerAI:
         print("Opponent: ", self.opponent[0].name)
         return ""
 
-    def makeTeam(self):
-        """ Converts string team input to PokemonMember class """
-        for p in self.team:
-            self.poke_team.append(PokemonMember(p[0], p[1], p[2], p[3], p[4]))
+
 
     def findEff(self):
         """ Finds the effectiveness of the user's leading pokemon's moveset against the type of the opponent.

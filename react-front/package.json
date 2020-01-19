@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "pokeapi-js-wrapper": "^1.1.1",
-    "pokedex-promise-v2": "^3.1.1",
+    "pokeapi-js-wrapper": "^1.1.2",
+    "pokedex-promise-v2": "^3.2.0",
     "pokemon-images": "^2.0.1",
     "rc-input-number": "^4.1.0",
     "react": "^16.4.2",

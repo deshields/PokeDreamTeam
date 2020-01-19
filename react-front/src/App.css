@@ -99,6 +99,7 @@ body {
   align-items: left;
   border: 2px solid gray;
   border-radius: 5px;
+  top: 100px;
   /* margin-bottom: 10px; */
 }
 .lvl {

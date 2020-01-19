@@ -1,18 +1,36 @@
 import sys
 sys.path.append('backend/')
-
-from battle import Battle, Sample_Battle
-from trainer import TrainerAI
+import json
+from battle import Battle
+from trainer import TrainerAI, makeTeam
 from flask import Flask, render_template, jsonify, request
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, resources={r"/*": {"origins": "http://localhost:3000/"}})
+
+# if (__name__ == '__main__'):
+#    app.run(
+#     host="localhost",
+#     port=3000
+#   )
+
 #
 # def homepage():
 #     return render_template("index.html")
+def sendToLog(battle):
+    return battle.getBattleLog()
 
-
-@app.route("/run")
-def Simulate(battle):
+@app.route("/run", methods=["POST", "OPTIONS"])
+@cross_origin(origin='*')
+def simulate():
+    print(request.get_json(force=True))
+    pokemon = json.loads(request.form['to-battle'])
+    trainer_teams = {v['trainer']:v for v in pokemon}
+    for trainer in trainer_teams:
+        pass #TODO
+    return
+def run_battle(battle):
     """ Runs a battle simulation. """
 
     scores = []
@@ -26,7 +44,4 @@ def Simulate(battle):
         scores.append([p.name, p.score])
 
 
-Simulate(Sample_Battle)
-
-def sendToLog(battle):
-    return battle.getBattleLog()
+# Simulate(Sample_Battle)

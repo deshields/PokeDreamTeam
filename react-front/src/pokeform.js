@@ -26,6 +26,8 @@ const renderSuggestion = suggestion => (
 
 var levelnum = 1
 
+
+
 class PokeAuto extends React.Component {
   constructor(props){
     super(props);
@@ -51,6 +53,16 @@ class PokeAuto extends React.Component {
   getData = () => {
     return {"sprite": Pokemon.getSprite(this.state.poke), "name": this.state.poke, "side": this.props.side, "level": this.state.lvl, "move1": this.state.move1, "move2": this.state.move2, "move3": this.state.move3, "move4": this.state.move4}
   }
+
+  findSprite = () => {
+   var current = Pokemon.getSprite(this.state.poke);
+   if(current == 'default'){
+     return 'missing.png';
+   }
+   else {
+     return current;
+   }
+ }
 
   onChange = (event, {newValue, method}) => {
     this.setState({
@@ -117,7 +129,7 @@ class PokeAuto extends React.Component {
           inputProps={pokeProp}
         />
 
-        <img src={Pokemon.getSprite(this.state.poke)} className={'spriteImg'} alt=""/>
+        <img src={this.findSprite()} className={'spriteImg'} alt=""/>
 
 
         <NumericInput mobile min={1} max={100} strict className="lvl" id="lvl" placeholder="Enter level." format={this.numChange}/>
@@ -139,7 +151,7 @@ class PokeAuto extends React.Component {
     </div>
     );
 
-  } 
+  }
 
 }
 export default PokeAuto;
