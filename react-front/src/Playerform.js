@@ -38,7 +38,7 @@ class TeamList extends React.Component {
       <div className="Teamlist">
         <ul>
           {this.props.items.map(item => (
-            <li key={this.props.items.indexOf(item)}><input type="image" src={item.sprite} className={'spriteImg'} onClick={this.delete.bind(this,item)}/></li>
+            <li key={this.props.items.indexOf(item)}><input type="image" src={item.all.sprite} className={'spriteImg'} onClick={this.delete.bind(this,item)}/></li>
           ))}
         </ul>
       </div>

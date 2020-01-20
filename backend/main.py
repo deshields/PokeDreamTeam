@@ -7,7 +7,7 @@ from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:3000/"}})
+CORS(app, resources={r"*": {"origins": "http://localhost:3000"}})
 
 # if (__name__ == '__main__'):
 #    app.run(
@@ -15,9 +15,6 @@ CORS(app, resources={r"/*": {"origins": "http://localhost:3000/"}})
 #     port=3000
 #   )
 
-#
-# def homepage():
-#     return render_template("index.html")
 def sendToLog(battle):
     return battle.getBattleLog()
 
@@ -25,11 +22,11 @@ def sendToLog(battle):
 @cross_origin(origin='*')
 def simulate():
     print(request.get_json(force=True))
-    pokemon = json.loads(request.form['to-battle'])
+    pokemon = request.get_json(force=True)
     trainer_teams = {v['trainer']:v for v in pokemon}
     for trainer in trainer_teams:
         pass #TODO
-    return
+    # return
 def run_battle(battle):
     """ Runs a battle simulation. """
 

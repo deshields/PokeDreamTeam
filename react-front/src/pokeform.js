@@ -55,13 +55,13 @@ class PokeAuto extends React.Component {
   }
 
   findSprite = () => {
-   var current = Pokemon.getSprite(this.state.poke);
-   if(current == 'default'){
-     return 'missing.png';
-   }
-   else {
-     return current;
-   }
+    try {
+      return Pokemon.getSprite(this.state.poke);
+
+    } catch (error) {
+      return 'missing.png';
+
+    }
  }
 
   onChange = (event, {newValue, method}) => {

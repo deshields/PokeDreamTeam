@@ -44,8 +44,8 @@ class App extends Component {
         all: this.Pa.getData(),
         sprite: this.Pa.getData().sprite,
         text: this.Pa.getData().name,
-        team: "A",
-        trainer: "Red"
+        // team: "A",
+        // trainer: "Red"
       }
       if(this.AList.state.items.length < 6){
         this.AList.setState(state =>({
@@ -66,10 +66,10 @@ class App extends Component {
        const newMember = {
          index: this.state.BTeam.length - 1,
          all: this.Pb.getData(),
-         sprite: this.Pb.getData().sprite,
-         text: this.Pb.getData().name,
-         team: "B",
-         trainer: "Blue"
+         // sprite: this.Pb.getData().sprite,
+         // text: this.Pb.getData().name,
+         // team: "B",
+         // trainer: "Blue"
 
        }
        if(this.BList.state.items.length < 6){
@@ -83,37 +83,33 @@ class App extends Component {
    }
 
 
-    convertToJsonStr(team){
+    convertToJsonStr(trainer, side, team){
       var list = [];
       for (const [index, value] of team.entries()){
-        list.push(JSON.stringify(value));
+        list.push(value);
       }
-      return list;
+      console.log(list)
+      let ret = {'trainer': trainer, 'side': side, "team":list}
+      return ret;
+
     }
 
     convertTeamsToJsonStr=()=>{
       var list = [];
-      list.push(this.convertToJsonStr(this.AList.state.items));
-      list.push(this.convertToJsonStr(this.BList.state.items));
+      list.push(this.convertToJsonStr("Red", "A", this.AList.state.items));
+      list.push(this.convertToJsonStr("Blue", "B", this.BList.state.items));
       // console.log(this.AList.state.items) //pass
       console.log(list) //fail
       return list;
     }
 
-    sendJSONthroughServer=(e)=>{
-      e.preventDefault();
+    sendJSONthroughServer=()=>{
+      // e.preventDefault();
       let xhr = new XMLHttpRequest();
       xhr.open('POST', 'http://127.0.0.1:5000/run')
       xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
       console.log(this.convertTeamsToJsonStr()) // failed
       xhr.send(JSON.stringify(this.convertTeamsToJsonStr()))
-      // fetch(this.props.formAction, {
-      //       headers: {
-      //           'Accept': 'application/json',
-      //           'Content-Type': 'application/json'
-      //       },
-      //       body: this.convertTeamsToJsonStr()
-      //   });           // <form id="to-battle" action="http://127.0.0.1:5000/run" method="post" onSubmit={this.sendJSONthroughServer}>
     }
 
   render() {
