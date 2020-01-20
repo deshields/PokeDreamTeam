@@ -24,7 +24,7 @@ const renderSuggestion = suggestion => (
   </div>
 );
 
-var levelnum = 1
+let levelnum = 1
 
 
 
@@ -37,7 +37,6 @@ class PokeAuto extends React.Component {
       suggestions: [],
       lvl: 1,
       side: '',
-      // form: '',
       poke: 'Pikachu',
       move1: '',
       move2: '',
@@ -51,7 +50,7 @@ class PokeAuto extends React.Component {
 };
 
   getData = () => {
-    return {"sprite": Pokemon.getSprite(this.state.poke), "name": this.state.poke, "side": this.props.side, "level": this.state.lvl, "move1": this.state.move1, "move2": this.state.move2, "move3": this.state.move3, "move4": this.state.move4}
+    return {"sprite": this.findSprite(), "name": this.state.poke, "side": this.props.side, "level": this.state.lvl, "move1": this.state.move1, "move2": this.state.move2, "move3": this.state.move3, "move4": this.state.move4}
   }
 
   findSprite = () => {
@@ -60,7 +59,6 @@ class PokeAuto extends React.Component {
 
     } catch (error) {
       return 'missing.png';
-
     }
  }
 
@@ -87,7 +85,7 @@ class PokeAuto extends React.Component {
 
   };
 
-  numChange(num) {
+  numChange = (num) => {
     levelnum = num
     return num
   }
@@ -101,6 +99,7 @@ class PokeAuto extends React.Component {
       move4: this.move_4.getMoveData(),
       lvl: levelnum
     }, function () {
+      console.log("Check: ", this.getData())
       return this.getData()
 
     });
