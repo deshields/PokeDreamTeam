@@ -17,22 +17,13 @@ def makeAPIFriendly(l_string):
 
     return l_string
 
-def makePokemon():
-    # For JSON data in form list
-    name = request.form['name']
-    lvl = request.form['lvl']
-    moves = request.form['moves']
-    item = request.form['item']
-    Pokemon = PokemonMember(name, '', lvl, moves, item)
-
 def makeTeam(team):
         """ Converts string team input to PokemonMember class """
         new_team = []
         for p in team:
-            # print(p)
-            # if side == p['all']['side']:
-            #     data = p['all']
-            new_team.append(PokemonMember(*p))
+            reformat = [p['all']['name'], '', p['all']['level'], [p['all']['move1'], p['all']['move2'],p['all']['move3'],p['all']['move4']], '']
+            # TODO: reformat inputs on front end
+            new_team.append(PokemonMember(*reformat))
         return new_team
 
 
@@ -46,7 +37,7 @@ class TrainerAI:
         self.name = name # String - optional
         # self.team = team # List of strings or Pokemon Objects [ ["pikachu", "", 10, ["thunderbolt", "spark"], ""], ["squirtle", "", 15, ["confuse ray", "lick"], ""] ]
         self.team_count = len(team)
-        self.poke_team = makeTeam(team)
+        self.team = self.poke_team = makeTeam(team)
         self.lead = self.poke_team[0]
         self.lead_index = 0
         self.items = items # if use is true, list of strings, otherwise null
@@ -82,10 +73,8 @@ class TrainerAI:
         opp_eff = []
         for opp in self.opponent:
             for i in range(len(self.lead.moveData)):
-                opp_eff.append(self.lead.checkEffectiveness(i, opp.lead.type))
-
-
-                # if len(self.toAttack.lead.type) == 2:
+                if self.lead.moveData[i]:
+                    opp_eff.append(self.lead.checkEffectiveness(i, opp.lead.type))
             move_eff.append(opp_eff)
             opp_eff = []
 
@@ -290,7 +279,7 @@ class TrainerAI:
         score = [0 for x in range(len(self.lead.moveData))]
         ogToAttack = self.toAttack
         for sim in range(len(self.lead.moveData)):
-            if self.lead.moveData[sim].power != None and self.lead.pp[sim] > 0:
+            if self.lead.moveData[sim] != None and self.lead.moveData[sim].power != None and self.lead.pp[sim] > 0:
                 if self.lead.moveData[sim].target.name == 'selected-pokemon':
                     if self.toAttack.lead.canBattle == True:
                         score[sim] = self.DamageCalc(sim, battle)
@@ -389,10 +378,10 @@ class TrainerAI:
 
 
 ### Presets
-
-Rai = TrainerAI("Rai", [ ["magikarp", "", 100, ["spacial rend", "spark", "blizzard", "earthquake"], ""] ], "A", [], 4)
-Chu = TrainerAI("Chu", [ ["minun", "", 65, ["thunderbolt", "iron tail"], ""], ["zubat", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
-Rai2 = TrainerAI("Rai-2", [ ["shinx", "", 5, ["thunderbolt", "spark"], ""], ["gastly", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
-Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)
-
-Anthony = TrainerAI("Antone", [ ["mewtwo", "", 50, ["tackle", "splash", "dark pulse"], ""], ["darkrai", "", 50, ["flamethrower", "psychic", "lick", "roar of time"], "" ] ], "B", [], 4 )
+#
+# Rai = TrainerAI("Rai", [ ["magikarp", "", 100, ["spacial rend", "spark", "blizzard", "earthquake"], ""] ], "A", [], 4)
+# Chu = TrainerAI("Chu", [ ["minun", "", 65, ["thunderbolt", "iron tail"], ""], ["zubat", "", 70, ["confuse ray", "lick"], ""] ], "A", [], 4)
+# Rai2 = TrainerAI("Rai-2", [ ["shinx", "", 5, ["thunderbolt", "spark"], ""], ["gastly", "", 10, ["confuse ray", "lick"], ""] ], "B", [], 4)
+# Cynthia = TrainerAI("Cynthia", [ ["spiritomb", "", 61, ["dark pulse", "embargo", "psychic", "silver wind"], ""],["garchomp", "", 66, ["brick break" , "dragon rush", "earthquake", "giga impact"], ""] ], "B", [], 4)
+#
+# Anthony = TrainerAI("Antone", [ ["mewtwo", "", 50, ["tackle", "splash", "dark pulse"], ""], ["darkrai", "", 50, ["flamethrower", "psychic", "lick", "roar of time"], "" ] ], "B", [], 4 )

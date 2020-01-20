@@ -13,7 +13,7 @@ class PokemonMember:
         # TODO: account for hidden ability?
 
         self.name = name.title()
-        self.level = lvl
+        self.level = int(lvl)
         self.type = [df.loc[self.name]['type1']]
         if df.loc[self.name]['type2'] != "" and type(df.loc[self.name]['type2']) is not float:
             self.type.append(df.loc[self.name]['type2'])
@@ -75,9 +75,12 @@ class PokemonMember:
         """ Convert the string input to move data using the pokebase api """
 
         for i in range(len(self.moves)):
-            name = self.moves[i].replace(" ", "-")
-            self.moveData[i] = pb.move(name)
-            self.pp[i] = self.moveData[i].pp
+            if self.moves[i]:
+                name = self.moves[i].replace(" ", "-")
+                self.moveData[i] = pb.move(name.lower())
+                self.pp[i] = self.moveData[i].pp
+            else:
+                self.moveData[i] = None
 
     def checkEffectiveness(self, move_index, opp_type):
 

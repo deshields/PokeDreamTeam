@@ -1,4 +1,4 @@
-from trainer import TrainerAI, Rai, Cynthia, Chu, Rai2, Anthony
+from trainer import TrainerAI #, Rai, Cynthia, Chu, Rai2, Anthony
 from poke import PokemonMember
 from numpy import random
 
@@ -19,7 +19,7 @@ class Battle:
     # In double battle, use set_opponent to switch targets OR just iterate through the list of opponents
 
     def __init__(self, battle_type, players):
-        assert(battle_type == 'SINGLE') #or battle_type == 'DOUBLE')
+        assert(battle_type == 'SINGLE') #or battle_type == 'DOUBLE') #we don't really need to assert anything though, an if statement with assertions should be fine
         assert(len(players) <= 4 and len(players) > 1)
         self.battle_type = battle_type
         self.players = players #list of trainer classes
